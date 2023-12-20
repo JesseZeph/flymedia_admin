@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
 import 'package:flymedia_admin/views/common/auth_switch_button.dart';
 import 'package:flymedia_admin/views/common/slidefadeswitcher.dart';
+import 'package:flymedia_admin/views/screens/auth/sign_in/sign_in_widget.dart';
+import 'package:flymedia_admin/views/screens/auth/sign_up/signup.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ class _AuthPageState extends State<AuthPage> {
                 ),
               ),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   width: width,
                   child: GestureDetector(
                     onTap: FocusScope.of(context).unfocus,
@@ -64,7 +66,7 @@ class _AuthPageState extends State<AuthPage> {
                           child: SlideFadeSwitcher(
                             child: _showSignin
                                 ? const SignInWidget()
-                                : const SignUpWidget(),
+                                : const SignUp(),
                           ),
                         ),
                         AuthSwitchButton(
@@ -84,38 +86,6 @@ class _AuthPageState extends State<AuthPage> {
           );
         },
       ),
-    );
-  }
-}
-
-class SignUpWidget extends StatefulWidget {
-  const SignUpWidget({super.key});
-
-  @override
-  State<SignUpWidget> createState() => _SignUpWidgetState();
-}
-
-class _SignUpWidgetState extends State<SignUpWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('up'),
-    );
-  }
-}
-
-class SignInWidget extends StatefulWidget {
-  const SignInWidget({super.key});
-
-  @override
-  State<SignInWidget> createState() => _SignInWidgetState();
-}
-
-class _SignInWidgetState extends State<SignInWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('in'),
     );
   }
 }

@@ -30,7 +30,7 @@ class TextInputField extends StatelessWidget {
       children: [
         Container(
           width: 325.w,
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
           decoration: BoxDecoration(
               border: Border.all(
                   width: 1,
@@ -44,7 +44,7 @@ class TextInputField extends StatelessWidget {
                 border: InputBorder.none,
                 hintText: hintText,
                 hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontSize: 14.sp,
+                    fontSize: 4.sp,
                     color: Color(lightHintTextColor.value).withOpacity(0.5),
                     fontWeight: FontWeight.w400)),
             validator: validator,

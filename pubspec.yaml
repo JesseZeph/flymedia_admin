@@ -41,9 +41,3 @@ flutter:
 
   assets:
     - assets/images/
-
-
-  fonts:
-    - family: Karla
-      fonts:
-        - asset: assets/fonts/karla.regular.ttf

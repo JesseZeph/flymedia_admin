@@ -18,14 +18,14 @@ class AuthSwitchButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.only(top: 2.r, bottom: 60.h),
+        padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 10.h),
         child: SlideFadeSwitcher(
           child: showSignIn
               ? Text.rich(
                   TextSpan(
                       text: "Don't have an account? ",
                       style: TextStyle(
-                        fontSize: 12.sp,
+                        fontSize: 5.sp,
                         fontWeight: FontWeight.w500,
                         color: Color(mainTextColor.value),
                       ),
@@ -33,7 +33,7 @@ class AuthSwitchButton extends StatelessWidget {
                         TextSpan(
                           text: "Sign Up",
                           style: TextStyle(
-                            fontSize: 12.sp,
+                            fontSize: 5.sp,
                             color: Color(
                                 mainColor.value), // Set your desired color
                           ),
@@ -45,7 +45,7 @@ class AuthSwitchButton extends StatelessWidget {
                   TextSpan(
                     text: "Do you have an account? ",
                     style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 5.sp,
                       fontWeight: FontWeight.w500,
                       color: Color(mainTextColor.value),
                     ),
@@ -53,7 +53,7 @@ class AuthSwitchButton extends StatelessWidget {
                       TextSpan(
                         text: "Log In",
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 5.sp,
                           color:
                               Color(mainColor.value), // Set your desired color
                         ),

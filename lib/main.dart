@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  final entrypoint = prefs.getBool('entrypoint') ?? false;
+  final entrypoint = prefs.getBool('entrypoint') ?? true;
   if (entrypoint == true) {
     defaultHome = const AdminOverview();
   }
