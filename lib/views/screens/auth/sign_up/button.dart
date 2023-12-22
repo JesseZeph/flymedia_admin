@@ -21,3 +21,21 @@ class SignUpButton extends StatelessWidget {
     );
   }
 }
+
+class AddAdminButton extends StatelessWidget {
+  final VoidCallback? onTap;
+  const AddAdminButton({required this.onTap, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
+      child: AnimatedButton(
+        onTap: onTap,
+        child: const RoundedButtonWidget(
+          title: 'Create Admin',
+        ),
+      ),
+    );
+  }
+}

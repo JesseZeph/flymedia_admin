@@ -16,6 +16,8 @@ const hintTextColor = Color(0xFF424242);
 const errorColor = Color(0xFFE20404);
 const greenTick = Color(0xFF079E3A);
 const tileColor = Color(0xFFF4F6F8);
+const purplePatch = Color(0xFF9747FF);
+const orangeTint = Color(0xFFFFB629);
 
 double height = 812.h;
 double width = 375.w;
