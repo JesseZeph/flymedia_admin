@@ -5,6 +5,7 @@ import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/client_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/influencers_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/overview_widget.dart';
+import 'package:flymedia_admin/views/screens/dashboard/screens/widgets/logout_dialog.dart';
 
 class AdminOverview extends StatefulWidget {
   const AdminOverview({super.key});
@@ -70,7 +71,9 @@ class _AdminOverviewState extends State<AdminOverview> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _showLogoutDialog(context);
+            },
             icon: Icon(
               Icons.exit_to_app_outlined,
               color: Color(lightHintTextColor.value),
@@ -125,6 +128,18 @@ class _AdminOverviewState extends State<AdminOverview> {
       _selectedIndex = index;
     });
   }
+}
+
+void _showLogoutDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 120.w),
+        child: const DialogWidget(),
+      );
+    },
+  );
 }
 
 class CustomNavigationBar extends StatelessWidget {
