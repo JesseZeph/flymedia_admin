@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/signup_provider.dart';
+import 'package:flymedia_admin/models/requests/auth/signup.dart';
+import 'package:flymedia_admin/utils/extensions/context_extension.dart';
 import 'package:flymedia_admin/views/common/appstyle.dart';
 import 'package:flymedia_admin/views/common/checkbox.dart';
 import 'package:flymedia_admin/views/common/reuseable_text.dart';
-import 'package:flymedia_admin/views/screens/auth/clientverification/verifyemailaddress.dart';
+import 'package:flymedia_admin/views/screens/auth/verification/verifyemailaddress.dart';
 import 'package:flymedia_admin/views/screens/auth/sign_up/emailfield.dart';
 import 'package:flymedia_admin/views/screens/auth/sign_up/namefield.dart';
 import 'package:flymedia_admin/views/screens/auth/sign_up/passwordfield.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'button.dart';
 
@@ -78,8 +82,32 @@ class _SignUpState extends State<SignUp> {
           SizedBox(
             height: 15.h,
           ),
-          SignUpButton(onTap: () {
-            Get.to(() => const VerifyEmailAccount());
+          SignUpButton(onTap: () async {
+            if (fullname.text.isEmpty ||
+                email.text.isEmpty ||
+                password.text.isEmpty) {
+              context.showError('One or more fields are empty');
+              return;
+            } else if (!agreedToTerms) {
+              context.showError("Agree to Terms of Services.");
+              return;
+            }
+            SignUpModel model = SignUpModel(
+                fullname: fullname.text,
+                email: email.text,
+                password: password.text);
+
+            String newModel = signUpModelToJson(model);
+            await context
+                .read<SignupNotifier>()
+                .signUp(newModel)
+                .then((success) {
+              if (success) {
+                Get.offAll(() => const VerifyEmailAccount());
+              } else {
+                context.showError('Sign up failed. Try again later');
+              }
+            });
           }),
         ],
       ),

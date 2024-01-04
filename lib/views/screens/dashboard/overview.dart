@@ -27,6 +27,7 @@ class _AdminOverviewState extends State<AdminOverview> {
       backgroundColor: Color(flyLight.value),
       appBar: AppBar(
         toolbarHeight: 80,
+        automaticallyImplyLeading: false,
         backgroundColor: Color(flyLight.value),
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1),
@@ -106,7 +107,7 @@ class _AdminOverviewState extends State<AdminOverview> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 15.h),
+                  padding: EdgeInsets.only(bottom: 14.h),
                   child: Text(
                     'Super Admin',
                     style: appStyle(3, Color(mainColor.value), FontWeight.w400),

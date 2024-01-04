@@ -49,7 +49,7 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                     Text(
                       'Create Admin',
                       style: appStyle(
-                          3,
+                          2.5,
                           Color(mainTextColor.value).withOpacity(0.8),
                           FontWeight.w300),
                     )

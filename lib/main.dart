@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/signup_provider.dart';
 import 'package:flymedia_admin/views/screens/auth/authpage.dart';
 import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -15,13 +16,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  final entrypoint = prefs.getBool('entrypoint') ?? true;
+  final entrypoint = prefs.getBool('entrypoint') ?? false;
   if (entrypoint == true) {
     defaultHome = const AdminOverview();
   }
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => LoginNotifier()),
+    ChangeNotifierProvider(create: (context) => SignupNotifier()),
   ], child: const MyApp()));
 }
 

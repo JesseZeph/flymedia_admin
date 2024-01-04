@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/services/helpers/forgot_password_helper.dart';
+import 'package:flymedia_admin/utils/extensions/context_extension.dart';
 import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/checkemail.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/resetPassword.dart';
@@ -135,8 +137,19 @@ class _VerifyEmailState extends State<VerifyEmail> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Get.to(() => const ResetPassword());
+                  onTap: () async {
+                    if (formKey.currentState?.validate() ?? false) {
+                      await context
+                          .read<ForgotPasswordHelper>()
+                          .verifyOtp(pinController.text)
+                          .then((resp) {
+                        if (resp.first) {
+                          Get.to(() => const ResetPassword());
+                        } else {
+                          context.showError(resp.last);
+                        }
+                      });
+                    }
                   },
                   child: Padding(
                     padding: EdgeInsets.only(top: showResend ? 10.h : 40.h),

@@ -25,3 +25,4 @@ double width = 375.w;
 String username = '';
 String userUid = '';
 String profile = '';
+String fullname = '';
