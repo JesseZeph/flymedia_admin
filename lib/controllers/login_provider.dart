@@ -41,11 +41,6 @@ class LoginNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  // set selectedContainer(int newSelectedContainer) {
-  //   _selectedContainer = newSelectedContainer;
-  //   notifyListeners();
-  // }
-
   Future<List<dynamic>> login(String model) async {
     _loader = !_loader;
     notifyListeners();
@@ -62,7 +57,7 @@ class LoginNotifier extends ChangeNotifier {
 
   Future<void> getPref() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    entrypoint = prefs.getBool('entrypoint') ?? false;
+    _entrypoint = prefs.getBool('entrypoint') ?? false;
     _loggedIn = prefs.getBool('loggedIn') ?? false;
     _fullName = prefs.getString('fullname') ?? '';
     _userId = prefs.getString('userId') ?? '';

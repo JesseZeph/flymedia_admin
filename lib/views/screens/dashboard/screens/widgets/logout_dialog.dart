@@ -3,7 +3,11 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/login_provider.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
+import 'package:flymedia_admin/views/screens/auth/authpage.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 void _showLogoutDialog(BuildContext context) {
   showDialog(
@@ -24,6 +28,7 @@ class DialogWidget extends StatefulWidget {
 class _DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
+    var loginNotifier = Provider.of<LoginNotifier>(context);
     return Dialog(
       shadowColor: Color(lightHintTextColor.value),
       shape: RoundedRectangleBorder(
@@ -68,7 +73,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          // loginNotifier.logout();
+                          loginNotifier.logout();
+                          Get.offAll(() => const AuthPage());
                         },
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.red,

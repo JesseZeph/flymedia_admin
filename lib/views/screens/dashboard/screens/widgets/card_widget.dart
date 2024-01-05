@@ -79,12 +79,9 @@ class VerificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return FittedBox(
       child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 18.h,
-        ),
-        width: width * 0.02,
+        padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
         decoration: BoxDecoration(
             border: Border.all(
               width: 1,
@@ -95,17 +92,17 @@ class VerificationCard extends StatelessWidget {
           children: [
             Text(
               text,
-              style: appStyle(5, Color(mainTextColor.value), FontWeight.w600),
+              style: appStyle(3, Color(mainTextColor.value), FontWeight.w600),
             ),
             const HeightSpacer(size: 20),
             Text(
-              website,
-              style: appStyle(3, Color(mainTextColor.value), FontWeight.w400),
+              countryName,
+              style: appStyle(2, Color(mainTextColor.value), FontWeight.w400),
             ),
             const HeightSpacer(size: 14),
             Text(
-              countryName,
-              style: appStyle(3, Color(dialogBlue.value), FontWeight.w400),
+              website,
+              style: appStyle(2, Color(dialogBlue.value), FontWeight.w400),
             ),
             const HeightSpacer(size: 16),
             GestureDetector(
@@ -118,7 +115,7 @@ class VerificationCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25.r)),
                 child: Text(
                   'View Profile',
-                  style: appStyle(3, Color(flyLight.value), FontWeight.w600),
+                  style: appStyle(2, Color(flyLight.value), FontWeight.w600),
                 ),
               ),
             )

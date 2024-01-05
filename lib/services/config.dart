@@ -8,4 +8,8 @@ class Config {
   static const verifyOtp = "/api/verifyPasswordReset";
   static const resendOtp = "/api/resendVerification";
   static const resetPassword = "/api/resetPassword";
+  static const pendingVerification = "/api/verifyCompany/pendingVerification";
+  static const totalCompanies = "/api/verifyCompany/totalCompanies";
+  static const totalInfluencers = "/api/users/influencers";
+  static const totalUsers = "/api/users/totalUsers";
 }

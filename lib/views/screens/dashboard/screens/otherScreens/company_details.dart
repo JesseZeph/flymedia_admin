@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymedia_admin/models/response/pending_verification.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/height_spacer.dart';
 import 'package:flymedia_admin/views/common/roundedbutton.dart';
@@ -7,13 +8,21 @@ import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:get/get.dart';
 
 class ComapanyDetailsWidget extends StatefulWidget {
-  const ComapanyDetailsWidget({super.key});
+  final PendingVerificationRes id;
+  const ComapanyDetailsWidget({super.key, required this.id});
 
   @override
   State<ComapanyDetailsWidget> createState() => _ComapanyDetailsWidgetState();
 }
 
 class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
+  late PendingVerificationRes verifyPending;
+  @override
+  void initState() {
+    super.initState();
+    verifyPending = widget.id;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +67,7 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 5.w, vertical: 20.h),
                         child: Text(
-                          'ShopWebly',
+                          verifyPending.companyName,
                           style: appStyle(
                               4, Color(mainTextColor.value), FontWeight.w600),
                         ),
@@ -78,7 +87,7 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 5.w, vertical: 20.h),
                         child: Text(
-                          'Bulim, Singapore',
+                          verifyPending.companyHq,
                           style: appStyle(
                               3.5, Color(mainTextColor.value), FontWeight.w500),
                         ),
@@ -98,7 +107,7 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 5.w, vertical: 20.h),
                         child: Text(
-                          'www.shopwebly.com',
+                          verifyPending.website,
                           style: appStyle(
                               3.5, Color(dialogBlue.value), FontWeight.w500),
                         ),
@@ -118,7 +127,7 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 5.w, vertical: 20.h),
                         child: Text(
-                          'Shopwebly@homework.com',
+                          verifyPending.companyEmail,
                           style: appStyle(
                               3.5, Color(mainTextColor.value), FontWeight.w500),
                         ),
@@ -138,7 +147,7 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 5.w, vertical: 20.h),
                         child: Text(
-                          '+3456789000',
+                          verifyPending.memberContact,
                           style: appStyle(
                               3.5, Color(mainTextColor.value), FontWeight.w500),
                         ),

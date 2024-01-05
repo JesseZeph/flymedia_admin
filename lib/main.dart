@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
 import 'package:flymedia_admin/controllers/signup_provider.dart';
+import 'package:flymedia_admin/controllers/users_provider.dart';
+import 'package:flymedia_admin/controllers/verification_provider.dart';
 import 'package:flymedia_admin/views/screens/auth/authpage.dart';
 import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -24,6 +26,8 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => LoginNotifier()),
     ChangeNotifierProvider(create: (context) => SignupNotifier()),
+    ChangeNotifierProvider(create: (context) => VerificationNotifier()),
+    ChangeNotifierProvider(create: (context) => UsersNotifier()),
   ], child: const MyApp()));
 }
 

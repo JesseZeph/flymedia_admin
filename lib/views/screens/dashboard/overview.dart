@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymedia_admin/controllers/login_provider.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/client_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/influencers_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/overview_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/widgets/logout_dialog.dart';
+import 'package:provider/provider.dart';
 
 class AdminOverview extends StatefulWidget {
   const AdminOverview({super.key});
@@ -23,6 +25,7 @@ class _AdminOverviewState extends State<AdminOverview> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var name = context.watch<LoginNotifier>().fullName;
     return Scaffold(
       backgroundColor: Color(flyLight.value),
       appBar: AppBar(
@@ -101,7 +104,7 @@ class _AdminOverviewState extends State<AdminOverview> {
                 Padding(
                   padding: EdgeInsets.only(top: 13.h),
                   child: Text(
-                    'Alex Chan',
+                    name,
                     style: appStyle(
                         3, Color(mainTextColor.value), FontWeight.w400),
                   ),

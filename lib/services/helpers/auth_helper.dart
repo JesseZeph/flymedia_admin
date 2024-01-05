@@ -47,7 +47,6 @@ class AuthHelper {
 
       var response =
           await client.post(url, headers: requestHeaders, body: model);
-      print("Response: ${response}");
 
       var decodedResponse = jsonDecode(response.body);
       print(response.body);

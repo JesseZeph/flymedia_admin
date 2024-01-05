@@ -99,6 +99,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                   String newModel = loginModelToJson(model);
                   await loginNotifier.login(newModel).then((success) async {
                     if (success.first) {
+                      prefs.setBool('loggedIn', true);
                       prefs.setBool('entrypoint', true);
                       Get.offAll(const AdminOverview());
                     } else {
