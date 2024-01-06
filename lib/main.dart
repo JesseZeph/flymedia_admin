@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/profile_provider.dart';
 import 'package:flymedia_admin/controllers/signup_provider.dart';
 import 'package:flymedia_admin/controllers/users_provider.dart';
 import 'package:flymedia_admin/controllers/verification_provider.dart';
@@ -28,6 +29,7 @@ void main() async {
     ChangeNotifierProvider(create: (context) => SignupNotifier()),
     ChangeNotifierProvider(create: (context) => VerificationNotifier()),
     ChangeNotifierProvider(create: (context) => UsersNotifier()),
+    ChangeNotifierProvider(create: (context) => ProfileProvider()),
   ], child: const MyApp()));
 }
 

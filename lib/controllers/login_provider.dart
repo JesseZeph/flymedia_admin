@@ -57,8 +57,9 @@ class LoginNotifier extends ChangeNotifier {
 
   Future<void> getPref() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    _entrypoint = prefs.getBool('entrypoint') ?? false;
+
     _loggedIn = prefs.getBool('loggedIn') ?? false;
+    _entrypoint = prefs.getBool('entrypoint') ?? false;
     _fullName = prefs.getString('fullname') ?? '';
     _userId = prefs.getString('userId') ?? '';
     _email = prefs.getString('email') ?? '';

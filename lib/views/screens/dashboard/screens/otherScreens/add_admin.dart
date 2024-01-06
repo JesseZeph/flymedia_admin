@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/signup_provider.dart';
+import 'package:flymedia_admin/models/requests/auth/signup.dart';
+import 'package:flymedia_admin/utils/extensions/context_extension.dart';
 import 'package:flymedia_admin/views/common/add_admin_fields.dart';
 import 'package:flymedia_admin/views/common/appstyle.dart';
 import 'package:flymedia_admin/views/screens/auth/sign_up/button.dart';
 import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/overview_widget.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class AddAdminWidget extends StatefulWidget {
   const AddAdminWidget({super.key});
@@ -92,9 +96,30 @@ class _AddAdminWidgetState extends State<AddAdminWidget> {
                 SizedBox(
                   height: 50.h,
                 ),
-                AddAdminButton(onTap: () {
-                  // Get.to(() => const ());
-                }),
+                AddAdminButton(onTap: () async {
+                  if (fullname.text.isEmpty ||
+                      email.text.isEmpty ||
+                      password.text.isEmpty) {
+                    context.showError('One of more fields are empty');
+                    return;
+                  }
+                  SignUpModel model = SignUpModel(
+                      fullname: fullname.text,
+                      email: email.text,
+                      password: password.text);
+
+                  String newModel = signUpModelToJson(model);
+                  await context
+                      .read<SignupNotifier>()
+                      .adminSign(newModel)
+                      .then((success) {
+                    if (success) {
+                      Get.offAll(() => const AdminOverview());
+                    } else {
+                      context.showError("Failed to create admin");
+                    }
+                  });
+                })
               ],
             ),
           ),

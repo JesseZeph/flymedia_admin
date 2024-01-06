@@ -35,6 +35,7 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
   @override
   void initState() {
     super.initState();
+    context.read<LoginNotifier>().getPref();
     getTotalCompanies();
     getTotalInfluencers();
     getTotalUsers();

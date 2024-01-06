@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymedia_admin/controllers/verification_provider.dart';
 import 'package:flymedia_admin/models/response/pending_verification.dart';
+import 'package:flymedia_admin/services/helpers/verify_company_helper.dart';
+import 'package:flymedia_admin/utils/extensions/context_extension.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/height_spacer.dart';
 import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
+import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class ComapanyDetailsWidget extends StatefulWidget {
   final PendingVerificationRes id;
@@ -168,7 +173,21 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                         },
                         child: const MiniOutlineRounded(title: 'Back')),
                     const WidthSpacer(width: 20),
-                    const MiniRoundedButton(title: 'Verify Company'),
+                    GestureDetector(
+                        onTap: () async {
+                          bool isVerified =
+                              await VerificationHelper.verifyCompany(
+                                  verifyPending.id);
+
+                          if (isVerified) {
+                            context.showSuccess('Company Verified');
+                          } else {
+                            context.showError("Failed to Verify Company");
+                          }
+                          Get.offAll(() => const AdminOverview());
+                        },
+                        child:
+                            const MiniRoundedButton(title: 'Verify Company')),
                   ],
                 ),
               ),

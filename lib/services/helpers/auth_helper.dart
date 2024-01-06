@@ -36,6 +36,36 @@ class AuthHelper {
     }
   }
 
+  static Future<bool> adminSignUp(String model) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      Map<String, String> requestHeaders = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${prefs.getString("token")}',
+      };
+
+      var url = Uri.https(Config.apiUrl, Config.adminSignUpUrl);
+      print(url);
+      var response =
+          await client.post(url, headers: requestHeaders, body: model);
+      print(response);
+      if (response.statusCode == 201) {
+        SignupResponse signupResponse =
+            SignupResponse.fromJson(jsonDecode(response.body));
+
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('email', signupResponse.user!.email!);
+
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      debugPrint("===> signup error: ${e.toString()}");
+      return false;
+    }
+  }
+
   static Future<List<dynamic>> login(String model) async {
     try {
       Map<String, String> requestHeaders = {

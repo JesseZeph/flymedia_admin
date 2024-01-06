@@ -45,6 +45,18 @@ class SignupNotifier extends ChangeNotifier {
     return wasSuccessful;
   }
 
+  Future<bool> adminSign(String model) async {
+    _loader = !_loader;
+    notifyListeners();
+    bool wasSuccessful = false;
+    await AuthHelper.adminSignUp(model).then((response) {
+      wasSuccessful = response;
+    });
+    _loader = !_loader;
+    notifyListeners();
+    return wasSuccessful;
+  }
+
   adminsEmailVerification(VerificationCode model, BuildContext context) async {
     _loader = !_loader;
     notifyListeners();
