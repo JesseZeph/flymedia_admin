@@ -10,7 +10,6 @@ import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/checkem
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/resetPassword.dart';
 import 'package:get/get.dart';
 
-import 'package:loading_overlay/loading_overlay.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flymedia_admin/models/requests/auth/login_request.dart';
 import 'package:flymedia_admin/services/helpers/auth_helper.dart';
+import 'package:flymedia_admin/services/helpers/firebase_auth_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_constants.dart';
 
 class LoginNotifier extends ChangeNotifier {
+  final auth = FirebaseAuthHelper();
   bool _obscureText = true;
   bool _loader = false;
   bool _entrypoint = false;
@@ -46,8 +49,13 @@ class LoginNotifier extends ChangeNotifier {
     notifyListeners();
     List<dynamic> wasSuccessful = [false];
     await AuthHelper.login(model).then(
-      (response) {
+      (response) async {
         wasSuccessful = response;
+        if (wasSuccessful.first) {
+          var originalModel = loginModelFromJson(model);
+          await auth.signIn(
+              email: originalModel.email, password: originalModel.password);
+        }
       },
     );
     _loader = !_loader;
@@ -70,6 +78,7 @@ class LoginNotifier extends ChangeNotifier {
 
   logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    auth.signOut();
     await prefs.clear();
     await prefs.setBool('loggedIn', false);
   }

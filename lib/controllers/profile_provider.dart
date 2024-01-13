@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flymedia_admin/models/response/get_influencer_profile.dart';
-import 'package:flymedia_admin/models/response/pending_verification.dart';
 import 'package:flymedia_admin/services/helpers/profile_helper.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileProvider extends ChangeNotifier {
   ProfileHelper profileHelper = ProfileHelper();

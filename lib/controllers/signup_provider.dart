@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flymedia_admin/models/requests/auth/verification_code.dart';
 import 'package:flymedia_admin/services/helpers/auth_helper.dart';
+import 'package:flymedia_admin/services/helpers/firebase_auth_helper.dart';
 import 'package:flymedia_admin/utils/extensions/context_extension.dart';
 import 'package:flymedia_admin/views/screens/auth/verification/userverificationsuccess.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/requests/auth/signup.dart';
 
 class SignupNotifier extends ChangeNotifier {
+  final auth = FirebaseAuthHelper();
   bool _loader = false;
   bool get loader => _loader;
   set loader(bool newState) {
@@ -37,8 +40,13 @@ class SignupNotifier extends ChangeNotifier {
     _loader = !_loader;
     notifyListeners();
     bool wasSuccessful = false;
-    await AuthHelper.signUp(model).then((response) {
+    await AuthHelper.signUp(model).then((response) async {
       wasSuccessful = response;
+      if (wasSuccessful) {
+        var originalModel = signUpModelFromJson(model);
+        await auth.signUp(
+            email: originalModel.email, password: originalModel.password);
+      }
     });
     _loader = !_loader;
     notifyListeners();
@@ -49,8 +57,13 @@ class SignupNotifier extends ChangeNotifier {
     _loader = !_loader;
     notifyListeners();
     bool wasSuccessful = false;
-    await AuthHelper.adminSignUp(model).then((response) {
+    await AuthHelper.adminSignUp(model).then((response) async {
       wasSuccessful = response;
+      if (wasSuccessful) {
+        var originalModel = signUpModelFromJson(model);
+        await auth.signUp(
+            email: originalModel.email, password: originalModel.password);
+      }
     });
     _loader = !_loader;
     notifyListeners();

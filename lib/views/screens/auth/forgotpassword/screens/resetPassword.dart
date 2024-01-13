@@ -8,7 +8,6 @@ import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/common/text_input_field.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/checkemail.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/resetSuccessful.dart';
-import 'package:get/get.dart';
 
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';

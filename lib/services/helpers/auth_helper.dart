@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flymedia_admin/models/requests/auth/login_request.dart';
 import 'package:flymedia_admin/models/requests/auth/verification_code.dart';
 import 'package:flymedia_admin/models/response/login_response.dart';
 import 'package:flymedia_admin/models/response/signup_response.dart';

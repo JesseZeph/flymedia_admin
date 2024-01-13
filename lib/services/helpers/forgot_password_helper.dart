@@ -82,14 +82,14 @@ class ForgotPasswordHelper extends ChangeNotifier {
   Future<List<dynamic>> resetPassword(String newPassword) async {
     _isloading = !_isloading;
     notifyListeners();
-    String userType = '';
+    // String userType = '';
     try {
       final response = await http.patch(
           Uri.https(Config.apiUrl, Config.resetPassword),
           body: {"email": recoveryMail, "newPassword": newPassword});
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        userType = decodedResponse['userType'];
+        // userType = decodedResponse['userType'];
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', decodedResponse['userToken']);
         await prefs.setString('userId', decodedResponse['_id']);
