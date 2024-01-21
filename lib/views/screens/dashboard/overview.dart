@@ -6,6 +6,7 @@ import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/client_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/influencers_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/overview_widget.dart';
+import 'package:flymedia_admin/views/screens/dashboard/screens/pricing_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/widgets/logout_dialog.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,7 @@ class _AdminOverviewState extends State<AdminOverview> {
     const OverviewPageWidget(),
     const InfluencersPageWidget(),
     const ClientPageWidget(),
+    const PricingWidget(),
   ];
   int _selectedIndex = 0;
   @override
@@ -45,7 +47,7 @@ class _AdminOverviewState extends State<AdminOverview> {
                 padding: EdgeInsets.symmetric(horizontal: 5.w),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              const WidthSpacer(width: 350),
+              const WidthSpacer(width: 250),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -65,6 +67,11 @@ class _AdminOverviewState extends State<AdminOverview> {
                         label: 'Clients',
                         isSelected: _selectedIndex == 2,
                         onTap: () => _onItemTapped(2),
+                      ),
+                      CustomNavigationItem(
+                        label: 'Pricing',
+                        isSelected: _selectedIndex == 3,
+                        onTap: () => _onItemTapped(3),
                       ),
                     ],
                   ),

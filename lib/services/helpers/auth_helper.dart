@@ -72,13 +72,11 @@ class AuthHelper {
       };
 
       var url = Uri.https(Config.apiUrl, Config.loginUrl);
-      print(url);
 
       var response =
           await client.post(url, headers: requestHeaders, body: model);
 
       var decodedResponse = jsonDecode(response.body);
-      print(response.body);
 
       if (response.statusCode == 200) {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -86,7 +84,7 @@ class AuthHelper {
         var user = loginResponseModelFromJson(response.body);
         await prefs.setString('token', user.userToken);
         await prefs.setString('userId', user.id);
-        await prefs.setString('uid', user.uid);
+        // await prefs.setString('uid', user.uid);
         await prefs.setString('profile', user.profile);
         await prefs.setString('email', user.email);
         await prefs.setString('fullname', user.fullname);

@@ -18,6 +18,7 @@ const greenTick = Color(0xFF079E3A);
 const tileColor = Color(0xFFF4F6F8);
 const purplePatch = Color(0xFF9747FF);
 const orangeTint = Color(0xFFFFB629);
+const flyGrey = Color(0xFFF0F2F6);
 
 double height = 812.h;
 double width = 375.w;

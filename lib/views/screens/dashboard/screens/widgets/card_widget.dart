@@ -118,7 +118,7 @@ class VerificationCard extends StatelessWidget {
                   style: appStyle(2, Color(flyLight.value), FontWeight.w600),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

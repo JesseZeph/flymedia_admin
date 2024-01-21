@@ -10,7 +10,7 @@ class LoginNotifier extends ChangeNotifier {
   final auth = FirebaseAuthHelper();
   bool _obscureText = true;
   bool _loader = false;
-  bool _entrypoint = false;
+  bool? _entrypoint;
   bool? _loggedIn = false;
 
   bool get obscureText => _obscureText;
@@ -19,7 +19,7 @@ class LoginNotifier extends ChangeNotifier {
   String get fullName => _fullName;
   String _userId = '';
   String get userId => _userId;
-  bool get entrypoint => _entrypoint;
+  bool get entrypoint => _entrypoint ?? false;
   bool get loggedIn => _loggedIn ?? false;
   String get email => _email;
   String _email = '';

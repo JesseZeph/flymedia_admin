@@ -186,7 +186,7 @@ class _ClientPageWidgetState extends State<ClientPageWidget> {
                                 })),
                           )
                         : const Center(
-                            child: Text('No influencers available'),
+                            child: Text('No clients available'),
                           ));
           })
         ],

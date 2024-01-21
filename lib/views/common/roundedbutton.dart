@@ -30,25 +30,35 @@ class RoundedButtonWidget extends StatelessWidget {
 }
 
 class MiniRoundedButton extends StatelessWidget {
+  final Color? textColor;
+  final Color? containerColor;
   final String title;
   const MiniRoundedButton({
     super.key,
     required this.title,
+    this.textColor,
+    this.containerColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40.w,
+      width: width * 0.11,
       padding: EdgeInsets.all(3.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(21.r),
-        color: Color(mainColor.value),
+        color: containerColor ?? Color(mainColor.value),
       ),
       child: Center(
-        child: Text(title,
-            textAlign: TextAlign.center,
-            style: appStyle(3, Color(flyLight.value), FontWeight.w600)),
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: textColor ?? Color(flyLight.value),
+                fontSize: 3.w,
+                fontWeight: FontWeight.w400,
+              ),
+        ),
       ),
     );
   }
