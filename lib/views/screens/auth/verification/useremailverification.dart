@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
@@ -136,8 +134,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                           onPressed: () async {
                             await SharedPreferences.getInstance()
                                 .then((prefs) async {
-                              String? userEmail =
-                                  await prefs.getString('email');
+                              String? userEmail = prefs.getString('email');
                               await context
                                   .read<ForgotPasswordHelper>()
                                   .forgotPassword(userEmail ?? '')

@@ -11,31 +11,33 @@ class AlertLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
       content: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 30.h,
-              width: 30.h,
-              child: LoadingAnimationWidget.inkDrop(
-                  color: Color(mainColor.value), size: 30),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              '$message...',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Color(mainTextColor.value),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.clip,
-            ),
-          ],
+        padding: EdgeInsets.all(10.w),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 30.h,
+                width: 30.h,
+                child: LoadingAnimationWidget.inkDrop(
+                    color: Color(mainColor.value), size: 30),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                '$message...',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Color(mainTextColor.value),
+                      fontSize: 3.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.clip,
+              ),
+            ],
+          ),
         ),
       ),
     );

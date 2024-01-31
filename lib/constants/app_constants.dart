@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flymedia_admin/models/requests/auth/subscription_request.dart';
+import 'package:flymedia_admin/models/response/subscription_response.dart';
 
 const mainColor = Color(0xFF04C1C4);
 const deepGreen = Color(0xFF02A6A9);
@@ -27,3 +29,5 @@ String username = '';
 String userUid = '';
 String profile = '';
 String fullname = '';
+SubscriptionResponse? subUpdate;
+SubscriptionRequest? subReq;

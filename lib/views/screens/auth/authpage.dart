@@ -28,31 +28,29 @@ class _AuthPageState extends State<AuthPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                child: Stack(
-                  children: [
-                    SizedBox(
+              Stack(
+                children: [
+                  SizedBox(
+                    width: width * 0.4,
+                    height: height,
+                    child: Image.asset(
+                      'assets/images/photo.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    child: SizedBox(
                       width: width * 0.4,
                       height: height,
                       child: Image.asset(
-                        'assets/images/photo.png',
+                        'assets/images/logo_frame.png',
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      child: SizedBox(
-                        width: width * 0.4,
-                        height: height,
-                        child: Image.asset(
-                          'assets/images/logo_frame.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
               Expanded(
                 child: SizedBox(

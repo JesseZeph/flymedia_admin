@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
-import 'package:flymedia_admin/views/common/appstyle.dart';
 import 'package:flymedia_admin/views/common/height_spacer.dart';
 
 class SubscriptionCardWidget extends StatelessWidget {
@@ -94,15 +93,18 @@ class SubscriptionCardWidget extends StatelessWidget {
               ],
             ),
             const HeightSpacer(size: 15),
-            Text(
-              featuresText,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: textColor ?? Color(lightMainText.value),
-                    fontSize: 3.w,
-                    fontWeight: FontWeight.w400,
-                    height: 3.5,
-                  ),
-              maxLines: 5,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              child: Text(
+                featuresText,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: textColor ?? Color(lightMainText.value),
+                      fontSize: 3.w,
+                      fontWeight: FontWeight.w400,
+                      height: 3.5,
+                    ),
+                maxLines: 5,
+              ),
             ),
             const HeightSpacer(size: 25),
             flyButton,

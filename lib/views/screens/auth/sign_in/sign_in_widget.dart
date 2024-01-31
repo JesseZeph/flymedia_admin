@@ -10,7 +10,6 @@ import 'package:flymedia_admin/views/common/text_input_field.dart';
 import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'button.dart';
 import 'forgot_password.dart';
@@ -42,12 +41,14 @@ class _SignInWidgetState extends State<SignInWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                child: ReusableText(
-                  text: 'Log in your Account',
-                  style:
-                      appStyle(6, Color(mainTextColor.value), FontWeight.w700),
+              FittedBox(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: ReusableText(
+                    text: 'Log in your Account',
+                    style: appStyle(
+                        6, Color(mainTextColor.value), FontWeight.w700),
+                  ),
                 ),
               ),
               SizedBox(
@@ -86,8 +87,8 @@ class _SignInWidgetState extends State<SignInWidget> {
               Align(
                 alignment: Alignment.center,
                 child: LoginButton(onTap: () async {
-                  final SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
+                  // final SharedPreferences prefs =
+                  //     await SharedPreferences.getInstance();
                   if (email.text.isEmpty || password.text.isEmpty) {
                     context.showError('One or more fields are empty');
                     return;

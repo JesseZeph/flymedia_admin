@@ -16,13 +16,11 @@ class VerificationHelper {
 
     List<PendingVerificationRes> resp = [];
     var url = Uri.https(Config.apiUrl, Config.pendingVerification);
-    print(url);
 
     var response = await client.get(url, headers: requestHeaders);
 
     if (response.statusCode == 200) {
       resp = pendingVerificationResFromJson(response.body);
-      print(resp);
       return resp;
     } else {
       throw Exception('Failed to get pending verifications');
@@ -36,13 +34,11 @@ class VerificationHelper {
 
     List<ClientListRes> clients = [];
     var url = Uri.https(Config.apiUrl, Config.clientList);
-    print(url);
 
     var response = await client.get(url, headers: requestHeaders);
 
     if (response.statusCode == 200) {
       clients = clientListResFromJson(response.body);
-      print(clients);
       return clients;
     } else {
       throw Exception('Failed to get client verifications');
@@ -73,9 +69,7 @@ class VerificationHelper {
       };
 
       var url = Uri.https(Config.apiUrl, "${Config.verifyCompany}/$campaignId");
-      print(url);
       var response = await client.post(url, headers: requestHeaders);
-      print(response);
 
       if (response.statusCode == 200) {
         return true;

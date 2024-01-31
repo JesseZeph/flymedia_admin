@@ -53,6 +53,7 @@ class CustomInputField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: controller,
+
         maxLines: maxLines,
         style: appStyle(3, Color(mainTextColor.value), FontWeight.w400),
         // maxLength: maxLength,

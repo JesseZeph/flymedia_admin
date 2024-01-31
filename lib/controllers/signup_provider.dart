@@ -48,8 +48,7 @@ class SignupNotifier extends ChangeNotifier {
             email: originalModel.email, password: originalModel.password);
       }
     });
-    _loader = !_loader;
-    notifyListeners();
+
     return wasSuccessful;
   }
 

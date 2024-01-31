@@ -11,7 +11,6 @@ import 'package:flymedia_admin/services/helpers/users_helper.dart';
 import 'package:flymedia_admin/services/helpers/verify_company_helper.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
-import 'package:flymedia_admin/views/screens/auth/authpage.dart';
 import 'package:flymedia_admin/views/screens/auth/sign_in/sign_in_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/otherScreens/add_admin.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/otherScreens/company_details.dart';
@@ -73,32 +72,37 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                       },
                       child: Align(
                         alignment: Alignment.bottomRight,
-                        child: Container(
-                          width: width * 0.08,
-                          padding: EdgeInsets.all(5.r),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1,
-                                  color: Color(lightHintTextColor.value)
-                                      .withOpacity(0.3)),
-                              borderRadius: BorderRadius.circular(5.r)),
-                          child: Row(
-                            children: [
-                              Icon(
-                                CupertinoIcons.plus,
-                                color:
-                                    Color(mainTextColor.value).withOpacity(0.8),
-                                size: 15,
-                              ),
-                              const WidthSpacer(width: 8),
-                              Text(
-                                'Create Admin',
-                                style: appStyle(
-                                    2.5,
-                                    Color(mainTextColor.value).withOpacity(0.8),
-                                    FontWeight.w300),
-                              )
-                            ],
+                        child: FittedBox(
+                          child: Container(
+                            width: width * 0.08,
+                            padding: EdgeInsets.all(5.r),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1,
+                                    color: Color(lightHintTextColor.value)
+                                        .withOpacity(0.3)),
+                                borderRadius: BorderRadius.circular(5.r)),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  CupertinoIcons.plus,
+                                  color: Color(mainTextColor.value)
+                                      .withOpacity(0.8),
+                                  size: 15,
+                                ),
+                                const WidthSpacer(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    'Create Admin',
+                                    style: appStyle(
+                                        2.5,
+                                        Color(mainTextColor.value)
+                                            .withOpacity(0.8),
+                                        FontWeight.w300),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

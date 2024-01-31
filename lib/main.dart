@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
 import 'package:flymedia_admin/controllers/profile_provider.dart';
 import 'package:flymedia_admin/controllers/signup_provider.dart';
+import 'package:flymedia_admin/controllers/subscription_provider.dart';
 import 'package:flymedia_admin/controllers/users_provider.dart';
 import 'package:flymedia_admin/controllers/verification_provider.dart';
 import 'package:flymedia_admin/firebase_options.dart';
@@ -24,7 +25,7 @@ void main() async {
   ); // Initialize Firebase
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final entrypoint = prefs.getBool('entrypoint') ?? false;
+  final entrypoint = prefs.getBool('entrypoint') ?? true;
 
   if (entrypoint == true) {
     defaultHome = const AdminOverview();
@@ -37,6 +38,7 @@ void main() async {
       ChangeNotifierProvider(create: (context) => VerificationNotifier()),
       ChangeNotifierProvider(create: (context) => UsersNotifier()),
       ChangeNotifierProvider(create: (context) => ProfileProvider()),
+      ChangeNotifierProvider(create: (context) => SubscriptionNotifier()),
     ],
     child: const MyApp(),
   ));

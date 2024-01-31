@@ -44,10 +44,8 @@ class AuthHelper {
       };
 
       var url = Uri.https(Config.apiUrl, Config.adminSignUpUrl);
-      print(url);
       var response =
           await client.post(url, headers: requestHeaders, body: model);
-      print(response);
       if (response.statusCode == 201) {
         SignupResponse signupResponse =
             SignupResponse.fromJson(jsonDecode(response.body));
