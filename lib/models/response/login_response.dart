@@ -8,6 +8,7 @@ class LoginResponseModel {
   final String profile;
   final String userToken;
   final String email;
+  final String userType;
   final String fullname;
 
   LoginResponseModel({
@@ -15,6 +16,7 @@ class LoginResponseModel {
     required this.profile,
     required this.userToken,
     required this.email,
+    required this.userType,
     required this.fullname,
   });
 
@@ -25,5 +27,6 @@ class LoginResponseModel {
         userToken: json["userToken"],
         email: json.containsKey("email") ? json["email"] : '',
         fullname: json["fullname"],
+        userType: 'userType',
       );
 }

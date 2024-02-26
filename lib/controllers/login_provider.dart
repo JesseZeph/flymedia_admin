@@ -19,6 +19,8 @@ class LoginNotifier extends ChangeNotifier {
   String get fullName => _fullName;
   String _userId = '';
   String get userId => _userId;
+  String _userType = '';
+  String get userType => _userType;
   bool get entrypoint => _entrypoint ?? false;
   bool get loggedIn => _loggedIn ?? false;
   String get email => _email;
@@ -71,6 +73,7 @@ class LoginNotifier extends ChangeNotifier {
     _fullName = prefs.getString('fullname') ?? '';
     _userId = prefs.getString('userId') ?? '';
     _email = prefs.getString('email') ?? '';
+    _userType = prefs.getString('userType') ?? '';
     notifyListeners();
     fullname = prefs.getString('fullname') ?? '';
     userUid = prefs.getString('uid') ?? '';

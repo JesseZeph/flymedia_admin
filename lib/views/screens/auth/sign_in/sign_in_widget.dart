@@ -34,6 +34,8 @@ class _SignInWidgetState extends State<SignInWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var loginNotifier = Provider.of<LoginNotifier>(context);
+
     return Consumer<LoginNotifier>(
       builder: (context, loginNotifier, child) {
         return Container(
@@ -94,9 +96,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                     return;
                   }
                   LoginModel model = LoginModel(
-                      email: email.text,
-                      userType: 'SuperAdmin',
-                      password: password.text);
+                    email: email.text,
+                    password: password.text,
+                    userType: 'SuperAdmin',
+                  );
                   String newModel = loginModelToJson(model);
                   await loginNotifier.login(newModel).then((success) async {
                     if (success.first) {

@@ -24,6 +24,7 @@ class AuthHelper {
 
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('email', signupResponse.user!.email!);
+        await prefs.setString('userType', signupResponse.user!.userType!);
 
         return true;
       } else {
@@ -52,6 +53,7 @@ class AuthHelper {
 
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('email', signupResponse.user!.email!);
+        await prefs.setString('userType', signupResponse.user!.userType!);
 
         return true;
       } else {
@@ -86,6 +88,7 @@ class AuthHelper {
         await prefs.setString('profile', user.profile);
         await prefs.setString('email', user.email);
         await prefs.setString('fullname', user.fullname);
+        await prefs.setString('userType', user.userType);
 
         await prefs.setBool('loggedIn', true);
         return [true];

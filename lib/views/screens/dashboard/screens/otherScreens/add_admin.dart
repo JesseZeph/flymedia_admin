@@ -127,7 +127,8 @@ class _AddAdminWidgetState extends State<AddAdminWidget> {
                         loading = !loading;
                       });
                       if (success) {
-                        Get.offAll(() => const AdminOverview());
+                        Navigator.pop(context);
+                        // Get.offAll(() => const AdminOverview());
                       } else {
                         context.showError("Failed to create admin");
                       }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/controllers/login_provider.dart';
+import 'package:flymedia_admin/controllers/signup_provider.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/auth/authpage.dart';
@@ -30,6 +31,13 @@ class _AdminOverviewState extends State<AdminOverview> {
   @override
   Widget build(BuildContext context) {
     var name = context.watch<LoginNotifier>().fullName;
+    var loginNotifier = Provider.of<LoginNotifier>(context);
+
+    String userTypeText = loginNotifier.userType == 'Admin'
+        ? 'Admin'
+        : loginNotifier.userType == 'SuperAdmin'
+            ? 'Super Admin'
+            : '';
     return Scaffold(
       backgroundColor: Color(flyLight.value),
       appBar: AppBar(
@@ -121,7 +129,7 @@ class _AdminOverviewState extends State<AdminOverview> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 14.h),
                   child: Text(
-                    'Super Admin',
+                    userTypeText,
                     style: appStyle(3, Color(mainColor.value), FontWeight.w400),
                   ),
                 ),
