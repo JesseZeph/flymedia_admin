@@ -17,4 +17,5 @@ class Config {
   static const clientList = "/api/verifyCompany";
   static const verifyCompany = "/api/verifyCompany";
   static const subscriptionUrl = "/api/subscriptions";
+  static const verifyInfluencer = '/api/influencerProfile/verification';
 }

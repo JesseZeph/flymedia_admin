@@ -27,6 +27,6 @@ class LoginResponseModel {
         userToken: json["userToken"],
         email: json.containsKey("email") ? json["email"] : '',
         fullname: json["fullname"],
-        userType: 'userType',
+        userType: json['userType'],
       );
 }

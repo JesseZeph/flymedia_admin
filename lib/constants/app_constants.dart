@@ -6,6 +6,7 @@ import 'package:flymedia_admin/models/response/subscription_response.dart';
 
 const mainColor = Color(0xFF04C1C4);
 const deepGreen = Color(0xFF02A6A9);
+const senderChatBubble = Color(0xFF03A6A9);
 const iconColor = Color(0xFF7DA2C1);
 const lightMain = Color(0xFFE7FFFF);
 const dialogColor = Color(0xFFF2F4F7);
@@ -16,11 +17,13 @@ const mainTextColor = Color(0xFF2D2F34);
 const lightHintTextColor = Color(0xFFAEAEAE);
 const hintTextColor = Color(0xFF424242);
 const errorColor = Color(0xFFE20404);
+const chatHeader = Color(0xFFFF3D00);
 const greenTick = Color(0xFF079E3A);
 const tileColor = Color(0xFFF4F6F8);
 const purplePatch = Color(0xFF9747FF);
 const orangeTint = Color(0xFFFFB629);
 const flyGrey = Color(0xFFF0F2F6);
+const filledColor = Color(0xFFF7F8FB);
 
 double height = 812.h;
 double width = 375.w;

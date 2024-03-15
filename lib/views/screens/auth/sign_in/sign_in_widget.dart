@@ -34,8 +34,6 @@ class _SignInWidgetState extends State<SignInWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var loginNotifier = Provider.of<LoginNotifier>(context);
-
     return Consumer<LoginNotifier>(
       builder: (context, loginNotifier, child) {
         return Container(

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/controllers/login_provider.dart';
-import 'package:flymedia_admin/controllers/signup_provider.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/auth/authpage.dart';
+import 'package:flymedia_admin/views/screens/dashboard/screens/message.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/client_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/influencers_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/overview_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/pricing_widget.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 
 class AdminOverview extends StatefulWidget {
@@ -25,6 +24,7 @@ class _AdminOverviewState extends State<AdminOverview> {
     const OverviewPageWidget(),
     const InfluencersPageWidget(),
     const ClientPageWidget(),
+    const MessageWidget(),
     const PricingWidget(),
   ];
   int _selectedIndex = 0;
@@ -32,7 +32,6 @@ class _AdminOverviewState extends State<AdminOverview> {
   Widget build(BuildContext context) {
     var name = context.watch<LoginNotifier>().fullName;
     var loginNotifier = Provider.of<LoginNotifier>(context);
-
     String userTypeText = loginNotifier.userType == 'Admin'
         ? 'Admin'
         : loginNotifier.userType == 'SuperAdmin'
@@ -79,7 +78,7 @@ class _AdminOverviewState extends State<AdminOverview> {
                         onTap: () => _onItemTapped(2),
                       ),
                       CustomNavigationItem(
-                        label: 'Pricing',
+                        label: 'Message',
                         isSelected: _selectedIndex == 3,
                         onTap: () => _onItemTapped(3),
                       ),

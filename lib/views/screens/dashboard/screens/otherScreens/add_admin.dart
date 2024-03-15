@@ -8,7 +8,6 @@ import 'package:flymedia_admin/utils/extensions/context_extension.dart';
 import 'package:flymedia_admin/views/common/add_admin_fields.dart';
 import 'package:flymedia_admin/views/common/appstyle.dart';
 import 'package:flymedia_admin/views/screens/auth/sign_up/button.dart';
-import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/influencer_verification_provider.dart';
 import 'package:flymedia_admin/controllers/profile_provider.dart';
 import 'package:flymedia_admin/controllers/signup_provider.dart';
 import 'package:flymedia_admin/controllers/subscription_provider.dart';
@@ -39,6 +40,8 @@ void main() async {
       ChangeNotifierProvider(create: (context) => UsersNotifier()),
       ChangeNotifierProvider(create: (context) => ProfileProvider()),
       ChangeNotifierProvider(create: (context) => SubscriptionNotifier()),
+      ChangeNotifierProvider(
+          create: (context) => InfluenceVerificationNotifier()),
     ],
     child: const MyApp(),
   ));
