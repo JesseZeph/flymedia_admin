@@ -21,7 +21,7 @@ class ForgotPasswordHelper extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await http.post(
-          Uri.http(Config.apiUrl, Config.forgotPassword),
+          Uri.http(AppConfig.apiUrl, AppConfig.forgotPassword),
           body: {"email": email});
       final decodedResponse = jsonDecode(response.body);
       _isloading = !_isloading;
@@ -44,7 +44,7 @@ class ForgotPasswordHelper extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await http.post(
-          Uri.https(Config.apiUrl, Config.verifyOtp),
+          Uri.https(AppConfig.apiUrl, AppConfig.verifyOtp),
           body: {"verificationCode": code});
       final decodedResponse = jsonDecode(response.body);
       _isloading = !_isloading;
@@ -64,7 +64,7 @@ class ForgotPasswordHelper extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await http.post(
-          Uri.https(Config.apiUrl, Config.resendOtp),
+          Uri.https(AppConfig.apiUrl, AppConfig.resendOtp),
           body: {"email": recoveryMail});
       final decodedResponse = jsonDecode(response.body);
       _isloading = !_isloading;
@@ -85,7 +85,7 @@ class ForgotPasswordHelper extends ChangeNotifier {
     // String userType = '';
     try {
       final response = await http.patch(
-          Uri.https(Config.apiUrl, Config.resetPassword),
+          Uri.https(AppConfig.apiUrl, AppConfig.resetPassword),
           body: {"email": recoveryMail, "newPassword": newPassword});
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {

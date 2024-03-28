@@ -258,7 +258,8 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                             } else if (snapshot.hasError) {
                               return Text("Error: ${snapshot.error}");
                             } else if (snapshot.data!.isEmpty) {
-                              return const Text("No Pending Veification");
+                              return const Center(
+                                  child: Text("No Pending Veifications"));
                             } else {
                               var verificationList = snapshot.data;
                               return SizedBox(

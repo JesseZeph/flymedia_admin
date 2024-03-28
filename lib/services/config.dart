@@ -1,4 +1,4 @@
-class Config {
+class AppConfig {
   static const apiUrl = "flymediabackend-production.up.railway.app";
 
   static const superAdminSignupUrl = "/api/register/superAdmin";
@@ -18,4 +18,6 @@ class Config {
   static const verifyCompany = "/api/verifyCompany";
   static const subscriptionUrl = "/api/subscriptions";
   static const verifyInfluencer = '/api/influencerProfile/verification';
+  static const chat = 'api/chats/groups';
+  static const String getAllCampaigns = "/api/uploadCampaign/campaigns";
 }

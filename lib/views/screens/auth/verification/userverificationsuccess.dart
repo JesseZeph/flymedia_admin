@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/views/common/roundedbutton.dart';
+import 'package:flymedia_admin/views/screens/auth/authpage.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/checkemail.dart';
-import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get.dart';
 
 class VerificationSuccessfull extends StatelessWidget {
@@ -31,7 +31,7 @@ class VerificationSuccessfull extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const AdminOverview());
+                  Get.to(() => const AuthPage());
                 },
                 child: Padding(
                   padding:

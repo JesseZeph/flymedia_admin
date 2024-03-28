@@ -15,7 +15,7 @@ class AuthHelper {
     try {
       Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
-      var url = Uri.https(Config.apiUrl, Config.superAdminSignupUrl);
+      var url = Uri.https(AppConfig.apiUrl, AppConfig.superAdminSignupUrl);
       var response =
           await client.post(url, headers: requestHeaders, body: model);
       if (response.statusCode == 201) {
@@ -44,7 +44,7 @@ class AuthHelper {
         'Authorization': 'Bearer ${prefs.getString("token")}',
       };
 
-      var url = Uri.https(Config.apiUrl, Config.adminSignUpUrl);
+      var url = Uri.https(AppConfig.apiUrl, AppConfig.adminSignUpUrl);
       var response =
           await client.post(url, headers: requestHeaders, body: model);
       if (response.statusCode == 201) {
@@ -53,7 +53,6 @@ class AuthHelper {
 
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('email', signupResponse.user!.email!);
-        await prefs.setString('userType', signupResponse.user!.userType!);
 
         return true;
       } else {
@@ -71,7 +70,7 @@ class AuthHelper {
         'Content-Type': 'application/json',
       };
 
-      var url = Uri.https(Config.apiUrl, Config.loginUrl);
+      var url = Uri.https(AppConfig.apiUrl, AppConfig.loginUrl);
 
       var response =
           await client.post(url, headers: requestHeaders, body: model);
@@ -105,7 +104,7 @@ class AuthHelper {
   static Future<bool> verifyEmail(VerificationCode model) async {
     try {
       Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
-      var url = Uri.https(Config.apiUrl, Config.verifyEmail);
+      var url = Uri.https(AppConfig.apiUrl, AppConfig.verifyEmail);
       var response = await client.patch(url,
           headers: requestHeaders, body: json.encode(model.toJson()));
       if (response.statusCode == 200) {

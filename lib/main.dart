@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/campaign_provider.dart';
 import 'package:flymedia_admin/controllers/influencer_verification_provider.dart';
 import 'package:flymedia_admin/controllers/profile_provider.dart';
 import 'package:flymedia_admin/controllers/signup_provider.dart';
@@ -26,9 +27,9 @@ void main() async {
   ); // Initialize Firebase
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final entrypoint = prefs.getBool('entrypoint') ?? true;
+  final isLoggedIn = prefs.getBool('loggedIn') ?? false;
 
-  if (entrypoint == true) {
+  if (isLoggedIn == true) {
     defaultHome = const AdminOverview();
   }
 
@@ -42,6 +43,7 @@ void main() async {
       ChangeNotifierProvider(create: (context) => SubscriptionNotifier()),
       ChangeNotifierProvider(
           create: (context) => InfluenceVerificationNotifier()),
+      ChangeNotifierProvider(create: (context) => CampaignNotifier()),
     ],
     child: const MyApp(),
   ));

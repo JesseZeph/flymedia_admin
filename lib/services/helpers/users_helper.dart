@@ -11,7 +11,7 @@ class UsersHelper {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.https(Config.apiUrl, Config.totalInfluencers);
+    var url = Uri.https(AppConfig.apiUrl, AppConfig.totalInfluencers);
     var response = await client.get(url, headers: requestHeaders);
     if (response.statusCode == 200) {
       var totalInfluencers = totalInfluencersResFromJson(response.body);
@@ -26,7 +26,7 @@ class UsersHelper {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.https(Config.apiUrl, Config.totalUsers);
+    var url = Uri.https(AppConfig.apiUrl, AppConfig.totalUsers);
     var response = await client.get(url, headers: requestHeaders);
     if (response.statusCode == 200) {
       var totalUsers = totalUsersResFromJson(response.body);

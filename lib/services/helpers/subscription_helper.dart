@@ -13,7 +13,7 @@ class SubscriptionHelper {
 
     try {
       final response = await http
-          .get(Uri.https(Config.apiUrl, Config.subscriptionUrl),
+          .get(Uri.https(AppConfig.apiUrl, AppConfig.subscriptionUrl),
               headers: await getHeaders())
           .timeout(
             const Duration(seconds: 15),
@@ -44,7 +44,7 @@ class SubscriptionHelper {
         'authorization': 'Bearer $token',
       };
 
-      var url = Uri.https(Config.apiUrl, Config.subscriptionUrl);
+      var url = Uri.https(AppConfig.apiUrl, AppConfig.subscriptionUrl);
 
       var response =
           await client.put(url, headers: requestHeaders, body: model);
@@ -73,7 +73,7 @@ class SubscriptionHelper {
         'authorization': 'Bearer $token',
       };
 
-      var url = Uri.https(Config.apiUrl, Config.subscriptionUrl);
+      var url = Uri.https(AppConfig.apiUrl, AppConfig.subscriptionUrl);
 
       var response = await client.delete(url, headers: requestHeaders);
 

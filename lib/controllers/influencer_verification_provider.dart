@@ -8,7 +8,7 @@ class InfluenceVerificationNotifier extends ChangeNotifier {
 
   Future<List<InfluencerverificationRes>> getAllVerification() async {
     var response = await repository.getRequest(
-      endpoint: Config.verifyInfluencer,
+      endpoint: AppConfig.verifyInfluencer,
       requiresHeader: true,
     );
     if (response.status) {
@@ -25,7 +25,7 @@ class InfluenceVerificationNotifier extends ChangeNotifier {
       {required String verificationId, required String verification}) async {
     try {
       var response = await repository.putRequest(
-          endpoint: Config.verifyInfluencer,
+          endpoint: AppConfig.verifyInfluencer,
           requiresHeader: true,
           body: {
             "verification_id": verificationId,

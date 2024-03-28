@@ -12,7 +12,7 @@ class ProfileHelper {
 
     try {
       final response = await http
-          .get(Uri.https(Config.apiUrl, Config.influencerProfile),
+          .get(Uri.https(AppConfig.apiUrl, AppConfig.influencerProfile),
               headers: await getHeaders())
           .timeout(
             const Duration(seconds: 15),

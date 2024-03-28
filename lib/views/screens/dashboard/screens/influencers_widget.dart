@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
 import 'package:flymedia_admin/controllers/profile_provider.dart';
+import 'package:flymedia_admin/utils/extensions/string_formatter.dart';
 import 'package:flymedia_admin/views/common/appstyle.dart';
+import 'package:flymedia_admin/views/common/width_spacer.dart';
+import 'package:flymedia_admin/views/screens/dashboard/screens/widgets/custom_karla_text.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfluencersPageWidget extends StatefulWidget {
-  const InfluencersPageWidget({super.key});
+  const InfluencersPageWidget({Key? key}) : super(key: key);
 
   @override
   State<InfluencersPageWidget> createState() => _InfluencersPageWidgetState();
@@ -19,193 +23,249 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
     context.read<ProfileProvider>().getProfile();
   }
 
+  openSocialProfile(String websiteLink, BuildContext context) async {
+    var link = Uri.parse(websiteLink);
+    try {
+      if (!await launchUrl(
+        link,
+        mode: LaunchMode.inAppBrowserView,
+      )) {
+        throw Exception('Could not launch website');
+      }
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(flyLight.value),
-      body: SizedBox(
-        width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: 20.h),
-              child: Text(
-                'Influencers',
-                style: appStyle(5, Color(mainTextColor.value), FontWeight.w600),
+      body: FittedBox(
+        child: SizedBox(
+          width: width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 40.h),
+                child: Text(
+                  'INFLUENCERS',
+                  style: appStyle(
+                    5,
+                    Color(mainTextColor.value),
+                    FontWeight.w600,
+                  ),
+                ),
               ),
-            ),
-            Consumer<ProfileProvider>(
-              builder: (context, profileNotifier, child) {
-                return Container(
-                    padding: EdgeInsets.only(
-                        top: 50.h, left: 5.w, right: 5.w, bottom: 5.w),
-                    decoration: BoxDecoration(
-                        color: Color(lightHintTextColor.value).withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(5.r)),
-                    child: profileNotifier.isFetchingProfile
-                        ? Center(
-                            child: Container(
-                                padding: EdgeInsets.all(20.r),
-                                child: const CircularProgressIndicator()))
-                        : profileNotifier.profile.isNotEmpty
-                            ? SizedBox(
-                                width: width,
-                                height: height * 0.2,
-                                child: ListView.builder(
-                                    itemCount: profileNotifier.profile.length,
-                                    itemBuilder: (context, index) {
-                                      var profile =
-                                          profileNotifier.profile[index];
-                                      return FittedBox(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(flyLight.value),
-                                          ),
-                                          child: DataTable(
-                                            columns: [
-                                              DataColumn(
-                                                label: Icon(
-                                                  Icons.square_outlined,
+              Padding(
+                padding: EdgeInsets.only(left: 10.w),
+                child: Column(
+                  children: [
+                    FittedBox(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: width * 0.23,
+                            child: const Align(
+                              alignment: Alignment.bottomLeft,
+                              child: CustomKarlaText(
+                                text: 'INFLUENCERS',
+                                size: 4,
+                                weight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.23,
+                            child: const Align(
+                              alignment: Alignment.bottomLeft,
+                              child: CustomKarlaText(
+                                text: 'FOLLOWERS',
+                                size: 4,
+                                weight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.23,
+                            child: const Align(
+                              alignment: Alignment.bottomLeft,
+                              child: CustomKarlaText(
+                                text: 'LOCATION',
+                                size: 4,
+                                weight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.23,
+                            child: const Align(
+                              alignment: Alignment.bottomLeft,
+                              child: CustomKarlaText(
+                                text: 'TIKTOK PROFILE',
+                                size: 4,
+                                weight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Consumer<ProfileProvider>(
+                      builder: (context, profileNotifier, child) {
+                        return profileNotifier.isFetchingProfile
+                            ? Center(
+                                child: Container(
+                                  padding: EdgeInsets.all(20.r),
+                                  child: const CircularProgressIndicator(),
+                                ),
+                              )
+                            : profileNotifier.profile.isNotEmpty
+                                // ignore: sized_box_for_whitespace
+                                ? Container(
+                                    width: width,
+                                    height: height * 0.65,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
+                                      itemCount: profileNotifier.profile.length,
+                                      itemBuilder: (context, index) {
+                                        var profileList =
+                                            profileNotifier.profile[index];
+                                        return FittedBox(
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                top: 30.h, bottom: 10.h),
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  style: BorderStyle.solid,
+                                                  width: 1,
                                                   color: Color(
                                                           lightHintTextColor
                                                               .value)
-                                                      .withOpacity(0.4),
+                                                      .withOpacity(0.3),
                                                 ),
                                               ),
-                                              DataColumn(
-                                                label: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 40.w,
-                                                      top: 5.h,
-                                                      bottom: 5.h),
-                                                  child: Text(
-                                                    'INFLUENCERS',
-                                                    style: appStyle(
-                                                        5,
-                                                        Color(mainTextColor
-                                                            .value),
-                                                        FontWeight.w600),
-                                                  ),
-                                                ),
-                                              ),
-                                              DataColumn(
-                                                label: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 40.w,
-                                                      top: 5.h,
-                                                      bottom: 5.h),
-                                                  child: Text(
-                                                    'FOLLOWERS',
-                                                    style: appStyle(
-                                                        5,
-                                                        Color(mainTextColor
-                                                            .value),
-                                                        FontWeight.w600),
-                                                  ),
-                                                ),
-                                              ),
-                                              DataColumn(
-                                                label: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 45.w,
-                                                      top: 5.h,
-                                                      bottom: 5.h),
-                                                  child: Text(
-                                                    'TIKTOK PROFILE',
-                                                    style: appStyle(
-                                                        5,
-                                                        Color(mainTextColor
-                                                            .value),
-                                                        FontWeight.w600),
-                                                  ),
-                                                ),
-                                              ),
-                                              DataColumn(
-                                                label: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 45.w,
-                                                      top: 5.h,
-                                                      bottom: 5.h),
-                                                  child: Text(
-                                                    'STATUS',
-                                                    style: appStyle(
-                                                        5,
-                                                        Color(mainTextColor
-                                                            .value),
-                                                        FontWeight.w600),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                            rows: [
-                                              DataRow(cells: [
-                                                DataCell(Icon(
-                                                    Icons.square_outlined,
-                                                    color: Color(
-                                                            lightHintTextColor
-                                                                .value)
-                                                        .withOpacity(0.4))),
-                                                DataCell(Text(
-                                                  profile.firstAndLastName,
-                                                  style: appStyle(
-                                                      4,
-                                                      Color(
-                                                          mainTextColor.value),
-                                                      FontWeight.w400),
-                                                )),
-                                                DataCell(Text(
-                                                    profile.noOfTikTokFollowers,
-                                                    style: appStyle(
-                                                        4,
-                                                        Color(mainTextColor
-                                                            .value),
-                                                        FontWeight.w400))),
-                                                DataCell(Container(
-                                                  width: 100.w,
-                                                  child: Text(
-                                                      profile.tikTokLink,
-                                                      style: appStyle(
-                                                          4,
-                                                          Color(
-                                                              dialogBlue.value),
-                                                          FontWeight.w400)),
-                                                )),
-                                                DataCell(TextButton(
-                                                    onPressed: () {},
-                                                    child: Container(
-                                                      width: 17.w,
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal: 5.w,
+                                            ),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SizedBox(
+                                                  width: width * 0.23,
+                                                  child: Row(
+                                                    children: [
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        child: Container(
+                                                          width: 15.w,
+                                                          height: 15.w,
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                          ),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100.r),
+                                                            child:
+                                                                Image.network(
+                                                              profileList
+                                                                  .imageUrl,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                      decoration: BoxDecoration(
-                                                        color: Color(
-                                                            lightMain.value),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
+                                                      const WidthSpacer(
+                                                          width: 10),
+                                                      CustomKarlaText(
+                                                        text: profileList
+                                                            .firstAndLastName,
+                                                        size: 4,
+                                                        weight: FontWeight.w400,
                                                       ),
-                                                      child: Text('Paid',
-                                                          style: appStyle(
-                                                              3,
-                                                              Color(mainColor
-                                                                  .value),
-                                                              FontWeight.w400)),
-                                                    ))),
-                                              ])
-                                            ],
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: width * 0.23,
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.bottomLeft,
+                                                    child: CustomKarlaText(
+                                                      text: profileList
+                                                          .noOfTikTokFollowers
+                                                          .formatFigures(),
+                                                      size: 4,
+                                                      weight: FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: width * 0.23,
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.bottomLeft,
+                                                    child: CustomKarlaText(
+                                                      text:
+                                                          profileList.location,
+                                                      size: 4,
+                                                      weight: FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: width * 0.23,
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.bottomLeft,
+                                                    child: TextButton(
+                                                      onPressed: () =>
+                                                          openSocialProfile(
+                                                              profileList
+                                                                  .tikTokLink,
+                                                              context),
+                                                      child: CustomKarlaText(
+                                                          text:
+                                                              'link to TikTok profile',
+                                                          size: 4,
+                                                          weight:
+                                                              FontWeight.w400,
+                                                          color: Color(
+                                                              dialogBlue
+                                                                  .value)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }),
-                              )
-                            : const Center(
-                                child: Text('No influencers available'),
-                              ));
-              },
-            ),
-          ],
+                                        );
+                                      },
+                                    ),
+                                  )
+                                : const Center(
+                                    child: Text('No campaign available'),
+                                  );
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

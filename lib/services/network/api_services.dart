@@ -16,7 +16,7 @@ class ApiService {
         status: false, message: 'Could not process request.', data: null);
     try {
       var response = await http
-          .get(Uri.https(Config.apiUrl, endpoint ?? '', query),
+          .get(Uri.https(AppConfig.apiUrl, endpoint ?? '', query),
               headers: requiresHeader ? await getHeaders() : null)
           .timeout(
             const Duration(seconds: 20),
@@ -45,7 +45,7 @@ class ApiService {
         status: false, message: 'Could not process request.', data: null);
     try {
       var response = await http
-          .post(Uri.https(Config.apiUrl, endpoint ?? '', query),
+          .post(Uri.https(AppConfig.apiUrl, endpoint ?? '', query),
               body: body, headers: requiresHeader ? await getHeaders() : null)
           .timeout(
             const Duration(seconds: 20),
@@ -74,7 +74,7 @@ class ApiService {
         status: false, message: 'Could not process request.', data: null);
     try {
       var response = await http
-          .put(Uri.https(Config.apiUrl, endpoint ?? '', query),
+          .put(Uri.https(AppConfig.apiUrl, endpoint ?? '', query),
               body: body, headers: requiresHeader ? await getHeaders() : null)
           .timeout(
             const Duration(seconds: 20),
@@ -103,7 +103,7 @@ class ApiService {
         status: false, message: 'Could not process request.', data: null);
     try {
       var response = await http
-          .delete(Uri.https(Config.apiUrl, endpoint ?? '', query),
+          .delete(Uri.https(AppConfig.apiUrl, endpoint ?? '', query),
               body: body, headers: requiresHeader ? await getHeaders() : null)
           .timeout(
             const Duration(seconds: 20),
@@ -135,7 +135,7 @@ class ApiService {
     try {
       var request = http.MultipartRequest(
         method,
-        Uri.https(Config.apiUrl, endpoint ?? '', query),
+        Uri.https(AppConfig.apiUrl, endpoint ?? '', query),
       )..headers.addAll(await getHeaders());
       if (body?.isNotEmpty ?? false) {
         request.fields.addAll(body ?? {});

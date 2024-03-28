@@ -69,14 +69,14 @@ class SignupNotifier extends ChangeNotifier {
     return wasSuccessful;
   }
 
-  adminsEmailVerification(VerificationCode model, BuildContext context) async {
+  adminsEmailVerification(VerificationCode model, BuildContext cnt) async {
     _loader = !_loader;
     notifyListeners();
     await AuthHelper.verifyEmail(model).then((response) {
       if (response == true) {
         Get.offAll(const VerificationSuccessfull());
       } else {
-        context.showError('Invalid OTP');
+        cnt.showError('Invalid OTP');
       }
     });
     _loader = !_loader;

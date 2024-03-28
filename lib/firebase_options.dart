@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -52,15 +49,25 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDxXxYb62yNdEzghlRs85Q5JoZj5dvk2Gc',
+    appId: '1:89477570848:web:d559c7d27dfd5d53067745',
+    messagingSenderId: '89477570848',
+    projectId: 'flymedia-app-7a2b9',
+    authDomain: 'flymedia-app-7a2b9.firebaseapp.com',
+    databaseURL: 'https://flymedia-app-7a2b9-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'flymedia-app-7a2b9.appspot.com',
+  );
+
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAab6xIoRhgIx7InB9l7dD-iv9mfp--rlM',
-    appId: '1:89477570848:ios:dde0af903d55c986067745',
+    appId: '1:89477570848:ios:62bd43c04c25c56a067745',
     messagingSenderId: '89477570848',
     projectId: 'flymedia-app-7a2b9',
     databaseURL: 'https://flymedia-app-7a2b9-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'flymedia-app-7a2b9.appspot.com',
     androidClientId: '89477570848-7a4p75d6tade0an7egardi9bavomlnl9.apps.googleusercontent.com',
-    iosClientId: '89477570848-8ehlfvsrnl37h6qobk4nru2v78tnhdoi.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flymediaAdmin.RunnerTests',
+    iosClientId: '89477570848-e258fpkms2d1alc2dqct28qo62jl3d84.apps.googleusercontent.com',
+    iosBundleId: 'com.flymedia.admin.RunnerTests',
   );
 }

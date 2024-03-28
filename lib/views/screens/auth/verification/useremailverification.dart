@@ -9,7 +9,6 @@ import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/screens/auth/verification/userverificationsuccess.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/checkemail.dart';
 import 'package:get/get.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +33,11 @@ class _EmailVerificationState extends State<EmailVerification> {
   }
 
   startTimer() async {
-    await Future.delayed(const Duration(minutes: 1));
-    if (!mounted) return;
-    setState(() {
-      showResend = true;
+    await Future.delayed(const Duration(seconds: 20), () {
+      if (!mounted) return;
+      setState(() {
+        showResend = true;
+      });
     });
   }
 
@@ -72,120 +72,113 @@ class _EmailVerificationState extends State<EmailVerification> {
     );
     return Consumer<SignupNotifier>(
       builder: (context, signupNotifier, child) {
-        return LoadingOverlay(
-          isLoading: signupNotifier.loader,
-          progressIndicator: const CircularProgressIndicator.adaptive(),
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 120.w, vertical: 50.h),
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 80.h),
-                      child: ImageWithTextWidget(
-                          assetImage:
-                              Image.asset('assets/images/openlaptop.png'),
-                          headerText: 'Verify your email address',
-                          subText:
-                              'Enter the 6 digits OTP sent to your email address'),
-                    ),
-                    Align(
-                      child: Pinput(
-                        defaultPinTheme: defaultPinTheme,
-                        focusedPinTheme: focusedPinTheme,
-                        controller: verificationCode,
-                        obscureText: true,
-                        length: 6,
-                        showCursor: false,
-                        onChanged: (_) {},
-                        onCompleted: (value) async {
-                          SharedPreferences.getInstance().then(
-                            (prefs) {
-                              String? userEmail = prefs.getString('email');
-                              VerificationCode model = VerificationCode(
-                                  email: userEmail,
-                                  verificationCode: verificationCode.text);
-                              signupNotifier.adminsEmailVerification(
-                                  model, context);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    Visibility(
-                      visible: showResend,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 30.h, bottom: 10.h),
-                        child: Text(
-                          "Didn't receive OTP?",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(fontSize: 4.sp),
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                        visible: showResend,
-                        child: TextButton(
-                          onPressed: () async {
-                            await SharedPreferences.getInstance()
-                                .then((prefs) async {
-                              String? userEmail = prefs.getString('email');
-                              await context
-                                  .read<ForgotPasswordHelper>()
-                                  .forgotPassword(userEmail ?? '')
-                                  .then((resp) {
-                                if (resp.first) {
-                                  context.showSuccess(
-                                      'Code sent! Check your mailbox');
-                                } else {
-                                  context.showError(resp.last);
-                                }
-                              });
-                            });
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 120.w, vertical: 50.h),
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 80.h),
+                    child: ImageWithTextWidget(
+                        assetImage: Image.asset('assets/images/openlaptop.png'),
+                        headerText: 'Verify your email address',
+                        subText:
+                            'Enter the 6 digits OTP sent to your email address'),
+                  ),
+                  Align(
+                    child: Pinput(
+                      defaultPinTheme: defaultPinTheme,
+                      focusedPinTheme: focusedPinTheme,
+                      controller: verificationCode,
+                      obscureText: true,
+                      length: 6,
+                      showCursor: false,
+                      onChanged: (_) {},
+                      onCompleted: (value) async {
+                        SharedPreferences.getInstance().then(
+                          (prefs) {
+                            String? userEmail = prefs.getString('email');
+                            VerificationCode model = VerificationCode(
+                                email: userEmail,
+                                verificationCode: verificationCode.text);
+                            signupNotifier.adminsEmailVerification(
+                                model, context);
                           },
-                          child: Text(
-                            "Resend OTP",
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      fontSize: 4.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(mainColor.value),
-                                    ),
-                          ),
-                        )),
-                    GestureDetector(
-                      onTap: () async {
-                        if (verificationCode.text.isEmpty ||
-                            verificationCode.text.length < 6) {
-                          context.showError('Enter complete code');
-                          return;
-                        }
-                        SharedPreferences.getInstance().then((prefs) {
-                          String? userEmail = prefs.getString('email');
-                          VerificationCode model = VerificationCode(
-                              email: userEmail,
-                              verificationCode: verificationCode.text);
-                          signupNotifier.adminsEmailVerification(
-                              model, context);
-                        });
-
-                        Get.to(() => const VerificationSuccessfull());
+                        );
                       },
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 15.h, horizontal: 13.w),
-                        child: const RoundedButtonWidget(
-                          title: 'Verify',
-                        ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: showResend,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 30.h, bottom: 10.h),
+                      child: Text(
+                        "Didn't receive OTP?",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontSize: 4.sp),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Visibility(
+                      visible: showResend,
+                      child: TextButton(
+                        onPressed: () async {
+                          await SharedPreferences.getInstance()
+                              .then((prefs) async {
+                            String? userEmail = prefs.getString('email');
+                            await context
+                                .read<ForgotPasswordHelper>()
+                                .forgotPassword(userEmail ?? '')
+                                .then((resp) {
+                              if (resp.first) {
+                                context.showSuccess(
+                                    'Code sent! Check your mailbox');
+                              } else {
+                                context.showError(resp.last);
+                              }
+                            });
+                          });
+                        },
+                        child: Text(
+                          "Resend OTP",
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontSize: 4.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(mainColor.value),
+                                  ),
+                        ),
+                      )),
+                  GestureDetector(
+                    onTap: () async {
+                      if (verificationCode.text.isEmpty ||
+                          verificationCode.text.length < 6) {
+                        context.showError('Enter complete code');
+                        return;
+                      }
+                      SharedPreferences.getInstance().then((prefs) {
+                        String? userEmail = prefs.getString('email');
+                        VerificationCode model = VerificationCode(
+                            email: userEmail,
+                            verificationCode: verificationCode.text);
+                        signupNotifier.adminsEmailVerification(model, context);
+                      });
+
+                      Get.to(() => const VerificationSuccessfull());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 15.h, horizontal: 13.w),
+                      child: const RoundedButtonWidget(
+                        title: 'Verify',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

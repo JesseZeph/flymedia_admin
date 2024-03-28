@@ -4,7 +4,6 @@ import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/screens/auth/verification/useremailverification.dart';
 import 'package:flymedia_admin/views/screens/auth/forgotpassword/screens/checkemail.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class VerifyEmailAccount extends StatelessWidget {
   const VerifyEmailAccount({

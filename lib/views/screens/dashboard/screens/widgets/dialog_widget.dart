@@ -111,9 +111,8 @@ class _VerifyDialogState extends State<VerifyDialog> {
                               await context
                                   .read<InfluenceVerificationNotifier>()
                                   .verifyInfluencer(
-                                    verification: 'Verified',
-                                    verificationId: verification.id,
-                                  );
+                                      verificationId: verification.id,
+                                      verification: 'Verified');
 
                               verificationCancelled = false;
                             },

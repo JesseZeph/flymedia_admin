@@ -4,11 +4,10 @@ import 'package:flymedia_admin/controllers/login_provider.dart';
 import 'package:flymedia_admin/views/common/exports.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/auth/authpage.dart';
-import 'package:flymedia_admin/views/screens/dashboard/screens/message.dart';
-import 'package:flymedia_admin/views/screens/dashboard/screens/client_widget.dart';
+import 'package:flymedia_admin/views/screens/dashboard/screens/client_list.dart';
+import 'package:flymedia_admin/views/screens/dashboard/screens/campaign_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/influencers_widget.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/overview_widget.dart';
-import 'package:flymedia_admin/views/screens/dashboard/screens/pricing_widget.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -23,20 +22,17 @@ class _AdminOverviewState extends State<AdminOverview> {
   final List<Widget> _screens = [
     const OverviewPageWidget(),
     const InfluencersPageWidget(),
-    const ClientPageWidget(),
-    const MessageWidget(),
-    const PricingWidget(),
+    const CampaignListPage(),
+    const ClientListWidget(),
   ];
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     var name = context.watch<LoginNotifier>().fullName;
-    var loginNotifier = Provider.of<LoginNotifier>(context);
-    String userTypeText = loginNotifier.userType == 'Admin'
-        ? 'Admin'
-        : loginNotifier.userType == 'SuperAdmin'
-            ? 'Super Admin'
-            : '';
+    var userTypeText = context.watch<LoginNotifier>().userType;
+    userTypeText == 'Admin'
+        ? userTypeText = 'Admin'
+        : userTypeText = 'Super Admin';
     return Scaffold(
       backgroundColor: Color(flyLight.value),
       appBar: AppBar(
@@ -56,7 +52,7 @@ class _AdminOverviewState extends State<AdminOverview> {
                 padding: EdgeInsets.symmetric(horizontal: 5.w),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              const WidthSpacer(width: 250),
+              const WidthSpacer(width: 200),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -73,12 +69,12 @@ class _AdminOverviewState extends State<AdminOverview> {
                         onTap: () => _onItemTapped(1),
                       ),
                       CustomNavigationItem(
-                        label: 'Clients',
+                        label: 'Campaigns',
                         isSelected: _selectedIndex == 2,
                         onTap: () => _onItemTapped(2),
                       ),
                       CustomNavigationItem(
-                        label: 'Message',
+                        label: 'Clients',
                         isSelected: _selectedIndex == 3,
                         onTap: () => _onItemTapped(3),
                       ),

@@ -96,7 +96,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                   LoginModel model = LoginModel(
                     email: email.text,
                     password: password.text,
-                    userType: 'SuperAdmin',
+                    userType: '',
                   );
                   String newModel = loginModelToJson(model);
                   await loginNotifier.login(newModel).then((success) async {

@@ -15,7 +15,7 @@ class VerificationHelper {
     };
 
     List<PendingVerificationRes> resp = [];
-    var url = Uri.https(Config.apiUrl, Config.pendingVerification);
+    var url = Uri.https(AppConfig.apiUrl, AppConfig.pendingVerification);
 
     var response = await client.get(url, headers: requestHeaders);
 
@@ -33,7 +33,7 @@ class VerificationHelper {
     };
 
     List<ClientListRes> clients = [];
-    var url = Uri.https(Config.apiUrl, Config.clientList);
+    var url = Uri.https(AppConfig.apiUrl, AppConfig.clientList);
 
     var response = await client.get(url, headers: requestHeaders);
 
@@ -50,7 +50,7 @@ class VerificationHelper {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.https(Config.apiUrl, Config.totalCompanies);
+    var url = Uri.https(AppConfig.apiUrl, AppConfig.totalCompanies);
     var response = await client.get(url, headers: requestHeaders);
     if (response.statusCode == 200) {
       var totalCompanies = totalCompaniesResFromJson(response.body);
@@ -68,7 +68,8 @@ class VerificationHelper {
         'Authorization': 'Bearer ${prefs.getString("token")}',
       };
 
-      var url = Uri.https(Config.apiUrl, "${Config.verifyCompany}/$campaignId");
+      var url =
+          Uri.https(AppConfig.apiUrl, "${AppConfig.verifyCompany}/$campaignId");
       var response = await client.post(url, headers: requestHeaders);
 
       if (response.statusCode == 200) {
