@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
-import 'package:flymedia_admin/controllers/influencer_verification_provider.dart';
 import 'package:flymedia_admin/models/response/influencer_verification_res.dart';
 import 'package:flymedia_admin/views/common/appstyle.dart';
 import 'package:flymedia_admin/views/common/height_spacer.dart';
 import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
-import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/widgets/dialog_widget.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfluencerDetailsWidget extends StatefulWidget {
   final InfluencerverificationRes id;
@@ -27,6 +25,20 @@ class _InflueencerDetailsState extends State<InfluencerDetailsWidget> {
   void initState() {
     super.initState();
     verification = widget.id;
+  }
+
+  openSocialProfile(String websiteLink, BuildContext context) async {
+    var link = Uri.parse(websiteLink);
+    try {
+      if (!await launchUrl(
+        link,
+        mode: LaunchMode.inAppBrowserView,
+      )) {
+        throw Exception('Could not launch website');
+      }
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
@@ -106,9 +118,13 @@ class _InflueencerDetailsState extends State<InfluencerDetailsWidget> {
                             3, Color(mainTextColor.value), FontWeight.w400),
                       ),
                     ),
-                    TextTileWidget(
-                      text: verification.influencer.tikTokLink,
-                      textColor: Colors.blue.withOpacity(0.8),
+                    TextButton(
+                      onPressed: () => openSocialProfile(
+                          verification.influencer.tikTokLink, context),
+                      child: TextTileWidget(
+                        text: 'Link to TikTok profile',
+                        textColor: Colors.blue.withOpacity(0.8),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20.h, top: 40.h),

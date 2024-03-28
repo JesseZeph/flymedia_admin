@@ -130,7 +130,7 @@ class VerificationCard extends StatelessWidget {
 class InfluencerVerificationCard extends StatelessWidget {
   final String text;
   final String countryName;
-  final String website;
+  final String? website;
   final void Function() onTap;
   final String imageUrl;
 
@@ -138,7 +138,7 @@ class InfluencerVerificationCard extends StatelessWidget {
     Key? key,
     required this.text,
     required this.countryName,
-    required this.website,
+    this.website,
     required this.onTap,
     required this.imageUrl,
   }) : super(key: key);
@@ -176,15 +176,9 @@ class InfluencerVerificationCard extends StatelessWidget {
               text,
               style: appStyle(3, Color(mainTextColor.value), FontWeight.w600),
             ),
-            const HeightSpacer(size: 20),
             Text(
               countryName,
               style: appStyle(2, Color(mainTextColor.value), FontWeight.w400),
-            ),
-            const HeightSpacer(size: 14),
-            Text(
-              website,
-              style: appStyle(2, Color(dialogBlue.value), FontWeight.w400),
             ),
             const HeightSpacer(size: 16),
             GestureDetector(
