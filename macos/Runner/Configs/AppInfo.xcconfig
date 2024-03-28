@@ -8,7 +8,7 @@
 PRODUCT_NAME = flymedia_admin
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.flymediaAdmin
+PRODUCT_BUNDLE_IDENTIFIER = com.flymedia.admin
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
