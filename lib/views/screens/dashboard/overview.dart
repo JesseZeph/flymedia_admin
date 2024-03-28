@@ -30,9 +30,14 @@ class _AdminOverviewState extends State<AdminOverview> {
   Widget build(BuildContext context) {
     var name = context.watch<LoginNotifier>().fullName;
     var userTypeText = context.watch<LoginNotifier>().userType;
-    userTypeText == 'Admin'
-        ? userTypeText = 'Admin'
-        : userTypeText = 'Super Admin';
+    if (userTypeText == 'Admin') {
+      userTypeText = 'Admin';
+    } else {
+      userTypeText = 'Super Admin';
+    }
+    // userTypeText == 'Admin'
+    //     ? userTypeText = 'Super Admin'
+    //     : userTypeText = 'Admin';
     return Scaffold(
       backgroundColor: Color(flyLight.value),
       appBar: AppBar(

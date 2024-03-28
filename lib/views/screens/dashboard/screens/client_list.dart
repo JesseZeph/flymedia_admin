@@ -41,7 +41,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(flyLight.value),
-      body: FittedBox(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -65,7 +65,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'COMPANIES',
                                 size: 4,
@@ -76,7 +76,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'EMAIL',
                                 size: 4,
@@ -87,7 +87,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'LOCATION',
                                 size: 4,
@@ -98,7 +98,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'WEBSITE',
                                 size: 4,
@@ -159,7 +159,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                                                     width: width * 0.23,
                                                     child: Align(
                                                       alignment:
-                                                          Alignment.bottomLeft,
+                                                          Alignment.center,
                                                       child: CustomKarlaText(
                                                         text: listClient
                                                             .companyName,
@@ -172,7 +172,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                                                     width: width * 0.23,
                                                     child: Align(
                                                       alignment:
-                                                          Alignment.bottomLeft,
+                                                          Alignment.center,
                                                       child: CustomKarlaText(
                                                         text: listClient
                                                             .companyEmail,
@@ -185,7 +185,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                                                     width: width * 0.23,
                                                     child: Align(
                                                       alignment:
-                                                          Alignment.bottomLeft,
+                                                          Alignment.center,
                                                       child: CustomKarlaText(
                                                         text: listClient
                                                             .companyHq,
@@ -198,7 +198,7 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                                                     width: width * 0.23,
                                                     child: Align(
                                                       alignment:
-                                                          Alignment.bottomLeft,
+                                                          Alignment.center,
                                                       child: TextButton(
                                                         onPressed: () =>
                                                             openSocialProfile(

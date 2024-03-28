@@ -41,10 +41,11 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(flyLight.value),
-      body: FittedBox(
+      body: SingleChildScrollView(
         child: SizedBox(
           width: width,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -70,7 +71,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'INFLUENCERS',
                                 size: 4,
@@ -81,7 +82,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'FOLLOWERS',
                                 size: 4,
@@ -92,7 +93,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'LOCATION',
                                 size: 4,
@@ -103,7 +104,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                           SizedBox(
                             width: width * 0.23,
                             child: const Align(
-                              alignment: Alignment.bottomLeft,
+                              alignment: Alignment.center,
                               child: CustomKarlaText(
                                 text: 'TIKTOK PROFILE',
                                 size: 4,
@@ -162,10 +163,13 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                                                 SizedBox(
                                                   width: width * 0.23,
                                                   child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Align(
-                                                        alignment: Alignment
-                                                            .bottomLeft,
+                                                        alignment:
+                                                            Alignment.center,
                                                         child: Container(
                                                           width: 15.w,
                                                           height: 15.w,
@@ -202,8 +206,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                                                 SizedBox(
                                                   width: width * 0.23,
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.bottomLeft,
+                                                    alignment: Alignment.center,
                                                     child: CustomKarlaText(
                                                       text: profileList
                                                           .noOfTikTokFollowers
@@ -216,8 +219,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                                                 SizedBox(
                                                   width: width * 0.23,
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.bottomLeft,
+                                                    alignment: Alignment.center,
                                                     child: CustomKarlaText(
                                                       text:
                                                           profileList.location,
@@ -229,8 +231,7 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                                                 SizedBox(
                                                   width: width * 0.23,
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.bottomLeft,
+                                                    alignment: Alignment.center,
                                                     child: TextButton(
                                                       onPressed: () =>
                                                           openSocialProfile(

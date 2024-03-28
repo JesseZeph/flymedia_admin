@@ -47,7 +47,7 @@ class _CampaignListPageState extends State<CampaignListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(flyLight.value),
-      body: FittedBox(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -70,7 +70,7 @@ class _CampaignListPageState extends State<CampaignListPage> {
                         SizedBox(
                           width: width * 0.23,
                           child: const Align(
-                            alignment: Alignment.bottomLeft,
+                            alignment: Alignment.center,
                             child: CustomKarlaText(
                               text: 'TITLE',
                               size: 4,
@@ -81,7 +81,7 @@ class _CampaignListPageState extends State<CampaignListPage> {
                         SizedBox(
                           width: width * 0.23,
                           child: const Align(
-                            alignment: Alignment.bottomLeft,
+                            alignment: Alignment.center,
                             child: CustomKarlaText(
                               text: 'PAYMENT',
                               size: 4,
@@ -92,7 +92,7 @@ class _CampaignListPageState extends State<CampaignListPage> {
                         SizedBox(
                           width: width * 0.23,
                           child: const Align(
-                            alignment: Alignment.bottomLeft,
+                            alignment: Alignment.center,
                             child: CustomKarlaText(
                               text: 'LOCATION',
                               size: 4,
@@ -103,7 +103,7 @@ class _CampaignListPageState extends State<CampaignListPage> {
                         SizedBox(
                           width: width * 0.23,
                           child: const Align(
-                            alignment: Alignment.bottomLeft,
+                            alignment: Alignment.center,
                             child: CustomKarlaText(
                               text: 'PAYMENT STATUS',
                               size: 4,
@@ -163,10 +163,13 @@ class _CampaignListPageState extends State<CampaignListPage> {
                                                     SizedBox(
                                                       width: width * 0.23,
                                                       child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Align(
                                                             alignment: Alignment
-                                                                .bottomLeft,
+                                                                .center,
                                                             child: Container(
                                                               width: 15.w,
                                                               height: 15.w,
@@ -205,8 +208,8 @@ class _CampaignListPageState extends State<CampaignListPage> {
                                                     SizedBox(
                                                       width: width * 0.23,
                                                       child: Align(
-                                                        alignment: Alignment
-                                                            .bottomLeft,
+                                                        alignment:
+                                                            Alignment.center,
                                                         child: CustomKarlaText(
                                                           text:
                                                               '\$${clientCampaign.rate.formatComma()}',
@@ -219,8 +222,8 @@ class _CampaignListPageState extends State<CampaignListPage> {
                                                     SizedBox(
                                                       width: width * 0.23,
                                                       child: Align(
-                                                        alignment: Alignment
-                                                            .bottomLeft,
+                                                        alignment:
+                                                            Alignment.center,
                                                         child: CustomKarlaText(
                                                           text: clientCampaign
                                                               .country,
@@ -233,8 +236,8 @@ class _CampaignListPageState extends State<CampaignListPage> {
                                                     SizedBox(
                                                       width: width * 0.23,
                                                       child: Align(
-                                                        alignment: Alignment
-                                                            .bottomLeft,
+                                                        alignment:
+                                                            Alignment.center,
                                                         child: CustomKarlaText(
                                                           text: clientCampaign
                                                                   .isPaidFor

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/constants/app_constants.dart';
+import 'package:flymedia_admin/controllers/influencer_verification_provider.dart';
 import 'package:flymedia_admin/models/response/influencer_verification_res.dart';
 import 'package:flymedia_admin/views/common/appstyle.dart';
 import 'package:flymedia_admin/views/common/height_spacer.dart';
 import 'package:flymedia_admin/views/common/roundedbutton.dart';
 import 'package:flymedia_admin/views/common/width_spacer.dart';
+import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:flymedia_admin/views/screens/dashboard/screens/widgets/dialog_widget.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class InfluencerDetailsWidget extends StatefulWidget {
   final InfluencerverificationRes id;
@@ -133,7 +136,7 @@ class _InflueencerDetailsState extends State<InfluencerDetailsWidget> {
                       child: const MiniOutlineRounded(title: 'Cancel')),
                   const WidthSpacer(width: 20),
                   GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {

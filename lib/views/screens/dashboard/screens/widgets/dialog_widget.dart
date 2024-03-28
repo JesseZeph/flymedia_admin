@@ -103,18 +103,18 @@ class _VerifyDialogState extends State<VerifyDialog> {
                           ),
                           child: TextButton(
                             onPressed: () async {
-                              setState(() {
-                                showTwoButtons = false;
-                                verifiedTextVisible = true;
-                              });
-
                               await context
                                   .read<InfluenceVerificationNotifier>()
                                   .verifyInfluencer(
                                       verificationId: verification.id,
                                       verification: 'Verified');
+                              setState(() {
+                                showTwoButtons = false;
+                                verifiedTextVisible = true;
+                              });
 
                               verificationCancelled = false;
+                              // Get.offAll(const AdminOverview());
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
@@ -144,7 +144,14 @@ class _VerifyDialogState extends State<VerifyDialog> {
                             borderRadius: BorderRadius.circular(50.r),
                           ),
                           child: TextButton(
-                            onPressed: () {
+                            onPressed: () async {
+                              await context
+                                  .read<InfluenceVerificationNotifier>()
+                                  .verifyInfluencer(
+                                    verification: 'Failed',
+                                    verificationId: verification.id,
+                                  );
+                              // Get.off(() => const AdminOverview());
                               setState(() {
                                 verificationCancelled = true;
                                 showTwoButtons = false;
@@ -189,13 +196,7 @@ class _VerifyDialogState extends State<VerifyDialog> {
                           ),
                           child: TextButton(
                             onPressed: () async {
-                              await context
-                                  .read<InfluenceVerificationNotifier>()
-                                  .verifyInfluencer(
-                                    verification: 'Failed',
-                                    verificationId: verification.id,
-                                  );
-                              Get.off(() => const AdminOverview());
+                              Get.offAll(const AdminOverview());
                               verificationCancelled = true;
                             },
                             style: TextButton.styleFrom(
