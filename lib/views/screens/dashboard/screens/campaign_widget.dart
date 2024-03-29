@@ -165,7 +165,7 @@ class _CampaignListPageState extends State<CampaignListPage> {
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
-                                                                .center,
+                                                                .start,
                                                         children: [
                                                           Align(
                                                             alignment: Alignment

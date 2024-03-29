@@ -304,7 +304,6 @@ class PendingVerificationWidget extends StatelessWidget {
       children: [
         VerificationCard(
           text: verifyPending.companyName,
-          website: verifyPending.website,
           countryName: verifyPending.companyHq,
           onTap: () {
             Get.to(() => ComapanyDetailsWidget(id: verifyPending));

@@ -65,14 +65,12 @@ class OverviewCardWidget extends StatelessWidget {
 class VerificationCard extends StatelessWidget {
   final String text;
   final String countryName;
-  final String website;
   final void Function() onTap;
 
   const VerificationCard({
     Key? key,
     required this.text,
     required this.countryName,
-    required this.website,
     required this.onTap,
   }) : super(key: key);
 
@@ -94,17 +92,12 @@ class VerificationCard extends StatelessWidget {
               text,
               style: appStyle(3, Color(mainTextColor.value), FontWeight.w600),
             ),
-            const HeightSpacer(size: 20),
+            const HeightSpacer(size: 14),
             Text(
               countryName,
               style: appStyle(2, Color(mainTextColor.value), FontWeight.w400),
             ),
             const HeightSpacer(size: 14),
-            Text(
-              website,
-              style: appStyle(2, Color(dialogBlue.value), FontWeight.w400),
-            ),
-            const HeightSpacer(size: 16),
             GestureDetector(
               onTap: onTap,
               child: Container(

@@ -27,7 +27,9 @@ class _ClientListWidgetState extends State<ClientListWidget> {
     var link = Uri.parse(websiteLink);
     try {
       if (!await launchUrl(
-        link,
+        link.scheme.startsWith('http')
+            ? link
+            : Uri.parse('https://$websiteLink'),
         mode: LaunchMode.inAppBrowserView,
       )) {
         throw Exception('Could not launch website');
@@ -157,14 +159,19 @@ class _ClientListWidgetState extends State<ClientListWidget> {
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.23,
-                                                    child: Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: CustomKarlaText(
-                                                        text: listClient
-                                                            .companyName,
-                                                        size: 4,
-                                                        weight: FontWeight.w400,
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 35.w),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        child: CustomKarlaText(
+                                                          text: listClient
+                                                              .companyName,
+                                                          size: 4,
+                                                          weight:
+                                                              FontWeight.w400,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

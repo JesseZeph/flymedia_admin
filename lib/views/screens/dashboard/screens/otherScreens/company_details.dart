@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flymedia_admin/models/response/pending_verification.dart';
@@ -11,6 +12,7 @@ import 'package:flymedia_admin/views/common/width_spacer.dart';
 import 'package:flymedia_admin/views/screens/dashboard/overview.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ComapanyDetailsWidget extends StatefulWidget {
   final PendingVerificationRes id;
@@ -27,6 +29,22 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
   void initState() {
     super.initState();
     verifyPending = widget.id;
+  }
+
+  openSocialProfile(String websiteLink, BuildContext context) async {
+    var link = Uri.parse(websiteLink);
+    try {
+      if (!await launchUrl(
+        link.scheme.startsWith('http')
+            ? link
+            : Uri.parse('https://$websiteLink'),
+        mode: LaunchMode.inAppBrowserView,
+      )) {
+        throw Exception('Could not launch website');
+      }
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
@@ -114,13 +132,22 @@ class _ComapanyDetailsWidgetState extends State<ComapanyDetailsWidget> {
                                     FontWeight.w400),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w, vertical: 20.h),
-                              child: Text(
-                                verifyPending.website,
-                                style: appStyle(3.5, Color(dialogBlue.value),
-                                    FontWeight.w500),
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3.w, vertical: 20.h),
+                                child: TextButton(
+                                  onPressed: () => openSocialProfile(
+                                      verifyPending.website, context),
+                                  child: Text(
+                                    'Link to Website',
+                                    style: appStyle(
+                                        3.5,
+                                        Color(dialogBlue.value),
+                                        FontWeight.w500),
+                                  ),
+                                ),
                               ),
                             )
                           ]),

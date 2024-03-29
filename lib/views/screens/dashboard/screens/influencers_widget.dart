@@ -27,7 +27,9 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
     var link = Uri.parse(websiteLink);
     try {
       if (!await launchUrl(
-        link,
+        link.scheme.startsWith('http')
+            ? link
+            : Uri.parse('https://$websiteLink'),
         mode: LaunchMode.inAppBrowserView,
       )) {
         throw Exception('Could not launch website');
@@ -163,31 +165,34 @@ class _InfluencersPageWidgetState extends State<InfluencersPageWidget> {
                                                 SizedBox(
                                                   width: width * 0.23,
                                                   child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
                                                     children: [
-                                                      Align(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: Container(
-                                                          width: 15.w,
-                                                          height: 15.w,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        100.r),
-                                                            child:
-                                                                Image.network(
-                                                              profileList
-                                                                  .imageUrl,
-                                                              fit: BoxFit.cover,
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 30.w),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Container(
+                                                            width: 15.w,
+                                                            height: 15.w,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          100.r),
+                                                              child:
+                                                                  Image.network(
+                                                                profileList
+                                                                    .imageUrl,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
